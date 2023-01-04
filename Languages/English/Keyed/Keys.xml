@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MCS.nextstrike>Next strike in {0}.</MCS.nextstrike>
+  <MCS.roof>roof</MCS.roof>
+  <MCS.CurrentModVersion>Installed mod-version: {0}</MCS.CurrentModVersion>
+  <MCS.ok>OK</MCS.ok>
+  <MCS.back>Back</MCS.back>
+  <MCS.confirm>Confirm</MCS.confirm>
+  <MCS.primary>Primary</MCS.primary>
+  <MCS.ancillary>Ancillary</MCS.ancillary>
+  <MCS.goodwill>MiningCo. goodwill: {0}</MCS.goodwill>
+  <MCS.hostile> (hostile)</MCS.hostile>
+  <MCS.inapproach>in approach</MCS.inapproach>
+  <MCS.callminingco>Call MiningCo.</MCS.callminingco>
+  <MCS.nolandingpad>no landing pad</MCS.nolandingpad>
+  <MCS.needlandingpad>need landing pad</MCS.needlandingpad>
+  <MCS.available>available</MCS.available>
+  <MCS.disembark>Disembark</MCS.disembark>
+  <MCS.disembarkTT>Disembark pawns awaiting orbital healing.</MCS.disembarkTT>
+  <MCS.guest>"guest"</MCS.guest>
+  <MCS.materialsok>Needed materials have been transferred to the damaged spaceship. You can now begin repairs.</MCS.materialsok>
+  <MCS.nomaterials>Not enough materials to perform repairs. Ensure the materials are stockpiled near the spaceship.</MCS.nomaterials>
+  <MCS.takeoffasap>Taking off ASAP</MCS.takeoffasap>
+  <MCS.planedtakeoff>Planned take-off: {0}</MCS.planedtakeoff>
+  <MCS.tradewithcargo>Trade with cargo spaceship</MCS.tradewithcargo>
+  <MCS.shiptitle>MiningCo. spaceship</MCS.shiptitle>
+  <MCS.landingpadpayment>A dispatcher spaceship paid you {0} silver for using your landing pad.</MCS.landingpadpayment>
+  <MCS.repairprogress>Repair progress: {0}</MCS.repairprogress>
+  <MCS.boardmedicnoroom>Board medical spaceship (no free slot)</MCS.boardmedicnoroom>
+  <MCS.boardmedic>Board medical spaceship ({0} silver)</MCS.boardmedic>
+  <MCS.boardmedicnosilver>Board medical spaceship ({0} silver) (not enough silver)</MCS.boardmedicnosilver>
+  <MCS.cannotboardmedic>{0} cannot board MiningCo. medical spaceship.. There is no more any free slot.</MCS.cannotboardmedic>
+  <MCS.cannotboardmedicsilver>{0} cannot board MiningCo. medical spaceship.. You have not enough silver to pay for {1} orbital healing.</MCS.cannotboardmedicsilver>
+  <MCS.pawnsaboardmedic>Pawns aboard: </MCS.pawnsaboardmedic>
+  <MCS.pawnsaboardmedicnone>Pawns aboard: none</MCS.pawnsaboardmedicnone>
+  <MCS.materialsnearby>Repair materials stockpiled nearby:</MCS.materialsnearby>
+  <MCS.startrepairs>Start repairs</MCS.startrepairs>
+  <MCS.startrepairsTT>Click to transfer repair materials to the spaceship. Make sure the materials are stockpiled near the spaceship. Your colonists will then be able to repair the spaceship.</MCS.startrepairsTT>
+  <MCS.whatdoyouwant>"MiningCo. here!
+What do you want, partner?"</MCS.whatdoyouwant>
+  <MCS.feeunpaid>fee unpaid</MCS.feeunpaid>
+  <MCS.disconnect>Disconnect</MCS.disconnect>
+  <MCS.comlink>-- Comlink with MiningCo. --</MCS.comlink>
+  <MCS.requestcargoship>Request cargo supply ({0} silver)</MCS.requestcargoship>
+  <MCS.requestmedicship>Request medical supply ({0} silver)</MCS.requestmedicship>
+  <MCS.requestairsupport>Request air support</MCS.requestairsupport>
+  <MCS.noship>no available ship for now</MCS.noship>
+  <MCS.nosilver>not enough silver</MCS.nosilver>
+  <MCS.nopad>no available landing pad</MCS.nopad>
+  <MCS.toxicfallout>toxic fallout</MCS.toxicfallout>
+  <MCS.requestapproved>"Alright, a supply ship should arrive soon with our best stuff.
+Greetings partner!"
+
+-- End of transmission --</MCS.requestapproved>
+  <MCS.medicrequestapproved>"We are sending you a medical ship immediately.
+
+Hold on down there, we're coming!
+
+-- End of transmission --</MCS.medicrequestapproved>
+  <MCS.airsupportrequestapproved>"Your air support request has been approved by my hierarchy.
+What kind of strike should we launch?"</MCS.airsupportrequestapproved>
+  <MCS.itemcost>{0} ({1} silver)</MCS.itemcost>
+  <MCS.airstriketype>{0}
+
+{1}
+
+Runs number: {2}
+
+Cost: {3} silver</MCS.airstriketype>
+  <MCS.noairsupport>"We cannot send you the requested air support.
+Damn those pirates, our ammo stock is too low to help you right now.
+I hope you will find a solution on your own!
+
+Greetings partner!"
+
+-- End of transmission --</MCS.noairsupport>
+  <MCS.airstrikeconfirmed>Airstrike target confirmed!</MCS.airstrikeconfirmed>
+  <MCS.healing>healing, {0}</MCS.healing>
+  <MCS.availablein>available in {0}</MCS.availablein>
+  <MCS.requesttakeoff>Request ship take-off</MCS.requesttakeoff>
+  <MCS.requesttakeoffTT>Request ship take-off. Note: solar flare and other events may delay actual take-off.</MCS.requesttakeoffTT>
+  <MCS.requestedsupply>Requested supply: </MCS.requestedsupply>
+  <MCS.periodicsupply>Periodic supply: </MCS.periodicsupply>
+  <MCS.medicalsupply>Medical supply: </MCS.medicalsupply>
+  <MCS.airstrikeavailable>Airstrike: available</MCS.airstrikeavailable>
+  <MCS.airstrikeavailablein>Airstrike: available in {0}</MCS.airstrikeavailablein>
+  <MCS.colonistaboard>Colonist aboard orbital station:</MCS.colonistaboard>
+  <MCS.partnershipfeeunpaid>Partnership fee unpaid</MCS.partnershipfeeunpaid>
+  <MCS.orbitaldown>Orbital link down</MCS.orbitaldown>
+  <MCS.partnershipfee>Partnership fee</MCS.partnershipfee>
+  <MCS.paypartnershipfee>Pay partnership fee ({0})</MCS.paypartnershipfee>
+  <MCS.partnershipfeepayed>Partnership fee paid to MiningCo..</MCS.partnershipfeepayed>
+  <MCS.notenoughsilver>not enough silver near orbital trade beacon</MCS.notenoughsilver>
+  <MCS.employeelost>A MiningCo. employee has been injured or killed in your area. MiningCo. goodwill toward you decreased: {0}</MCS.employeelost>
+  <MCS.partnershipfeeTT>To establish a regular trading route or resolve a dispute with MiningCo., you must pay a "partnership fee".
+Use the orbital relay console to proceed.</MCS.partnershipfeeTT>
+  <MCS.ancillaryTT>Spaceships may only land there if primary landing pad is busy. Click to set it as primary.</MCS.ancillaryTT>
+  <MCS.primaryTT>Spaceships will land there in priority if landing pad is clear. Otherwise, they will choose another.</MCS.primaryTT>
+  <MCS.primarypad>Primary landing pad</MCS.primarypad>
+  <MCS.enablelights>Enable landing pad lights</MCS.enablelights>
+  <MCS.enablelightsTT>Disable the beacon lights if your are getting a performance hit with dynamic glowers. Switching the landing pad power off and on may be necessary.</MCS.enablelightsTT>
+  <MCS.blockedby>Blocked by {0}</MCS.blockedby>
+  <MCS.onepermap>You can only build one {0} per map.</MCS.onepermap>
+  <MCS.newairstrikedesignated>New airstrike target designated.</MCS.newairstrikedesignated>
+  <MCS.cargoshiplanding>A MiningCo. cargo spaceship is landing.</MCS.cargoshiplanding>
+  <MCS.medicshiplanding>A MiningCo. medical spaceship is landing.</MCS.medicshiplanding>
+  <MCS.dispatchdrop>A MiningCo. dispatcher is dropping an expedition team.</MCS.dispatchdrop>
+  <MCS.setnewtarget>Set new target</MCS.setnewtarget>
+  <MCS.setnewtargetTT>Designate a new airstrike target. This can delay the next run as the strike ship has to change its planned trajectory. Can only designate an unfogged position.</MCS.setnewtargetTT>
+</LanguageData>

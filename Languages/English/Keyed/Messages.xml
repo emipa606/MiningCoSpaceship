@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MCS.repairsequesttitle>Repairs request</MCS.repairsequesttitle>
+  <MCS.repairsequest>-- Comlink with MiningCo. --
+
+MiningCo. pilot:
+
+"Hello partner!
+Our ship is damaged and we need some repairs before going back to the orbital station.
+Help us and we will reward you. Business as usual!
+
+-- End of transmission --
+
+WARNING! Not helping the ship will negatively impact your partnership with MiningCo..</MCS.repairsequest>
+  <MCS.repairscompletetitle>Repairs completed</MCS.repairscompletetitle>
+  <MCS.repairscomplete>-- Comlink with MiningCo. --
+
+MiningCo. pilot:
+
+"We are really grateful for your help, partner!
+Tonight, we will drink to your colony in the orbital ship mess.
+Here, take those crates as a compensation for your efforts. You have well earned it.
+
+See you soon partner!"
+
+-- End of transmission --</MCS.repairscomplete>
+  <MCS.repairscompletesosotitle>Partial repairs</MCS.repairscompletesosotitle>
+  <MCS.repairscompletesoso>-- Comlink with MiningCo. --
+
+MiningCo. pilot:
+
+"We are grateful for your help, partner!
+This is not perfect but at least, you tried.
+Here, take those crates as a compensation for your efforts.
+
+See you partner!"
+
+-- End of transmission --</MCS.repairscompletesoso>
+  <MCS.repairscompletebadtitle>Failed repairs</MCS.repairscompletebadtitle>
+  <MCS.repairscompletebad>-- Comlink with MiningCo. --
+
+MiningCo. pilot:
+
+"Well, it seems the repairs did not go as we expected.
+You have supplied us the materials but our ship is in worse condition than when we landed.
+You should really review the MiningCo. spaceship maintenance manual!
+
+See you partner!"
+
+-- End of transmission --</MCS.repairscompletebad>
+  <MCS.repairscompletenonetitle>Repairs?!</MCS.repairscompletenonetitle>
+  <MCS.repairscompletenone>-- Comlink with MiningCo. --
+
+MiningCo. pilot:
+
+"Well, it seems you cannot help us. Headquarters will not be pleased to hear that.
+MiningCo. does not bother making business with weak partners.
+
+Do not count on our services for some time, "partner"."
+
+-- End of transmission --
+
+Next cargo supply is delayed.
+Airstrike is not available for some time.</MCS.repairscompletenone>
+  <MCS.repairscompleteworsttitle>Repairs?!</MCS.repairscompleteworsttitle>
+  <MCS.repairscompleteworst>-- Comlink with MiningCo. --
+
+MiningCo. pilot:
+
+"I can't believe it! Our ship is in worse condition than when we landed.
+I am not supplying this rathole any soon!"
+
+(You can hear insults before the pilot disconnects.)
+
+-- End of transmission --
+
+Next cargo supply is greatly delayed.
+Airstrike is not available for a long time.</MCS.repairscompleteworst>
+  <MCS.damagedmedictitle>Medical spaceship damaged</MCS.damagedmedictitle>
+  <MCS.damagedmedic>-- Comlink with MiningCo. --
+  
+"Our medical spaceship was damaged during the last supply.
+Repairs will take some times.
+
+Remember the MiningCo. partnership contract stipulates that you must ensure landing ships security!"
+
+-- End of transmission --</MCS.damagedmedic>
+  <MCS.damagedcargotitle>Cargo spaceship damaged</MCS.damagedcargotitle>
+  <MCS.damagedcargo>-- Comlink with MiningCo. --
+
+"Our cargo spaceship was damaged during the last supply.
+Repairs will take some times.
+
+Remember the MiningCo. partnership contract stipulates that you must ensure landing ships security!\"
+
+-- End of transmission --</MCS.damagedcargo>
+  <MCS.lostshiptitle>Spaceship destroyed</MCS.lostshiptitle>
+  <MCS.lostship>-- Comlink with MiningCo. --
+  
+"We just lost contact with one of our ships in your sector.
+Whatever happened, you are held responsible of this loss.
+
+Pay a compensation or say goodbye to our partnership!"
+
+-- End of transmission --</MCS.lostship>
+  <MCS.medicinjuredtitle>Medic down</MCS.medicinjuredtitle>
+  <MCS.medicinjured>A MiningCo. medic has been downed or killed while helping your colony.
+
+Medics are precious people, even more on rimworlds. Losing one will obviously anger MiningCo. and nobody wants to anger this company.
+Remember that you must ensure their safety in your area!</MCS.medicinjured>
+  <MCS.keeppawntitle>Orbital "guests"</MCS.keeppawntitle>
+  <MCS.keeppawninfo>-- Comlink with MiningCo. --
+
+"A friend of yours is being healed in our medibay. I think we will keep {0} aboard as... "guest" for {1} own safety.
+It is really dangerous down there, you know, and there are lot of menial - ehr, I mean "interresting" - tasks to do aboard an orbital station to keep {0} occupied.
+
+MiningCo. medibay officer out."
+
+-- End of transmission --
+
+The following colonist is kept as "guest" aboard the orbital station until you pay a compensation: {2}.</MCS.keeppawninfo>
+  <MCS.keeppawn>-- Comlink with MiningCo. --
+"Some friends of yours are being healed in our medibay. I think we will keep them aboard as... "guests" for their own safety.
+It is really dangerous down there, you know, and there are lot of menial - ehr, I mean "interresting" - tasks to do aboard an orbital station to keep them occupied.
+
+MiningCo. medibay officer out."
+
+-- End of transmission --
+
+The following colonists are kept as "guests" aboard the orbital station until you pay a compensation: </MCS.keeppawn>
+  <MCS.healingdonetitle>Orbital healing finished</MCS.healingdonetitle>
+  <MCS.healingdone>-- Comlink with MiningCo. --
+
+"Healing of {0} is now finished. Everything went fine during the treatment.
+We just launched {1} drop pod toward your colony.
+
+I hope you are satisfied of our services.
+
+MiningCo. medibay officer out."
+
+-- End of transmission --</MCS.healingdone>
+  <MCS.healingfailtitle>Orbital healing interrupted</MCS.healingfailtitle>
+  <MCS.healingfail>-- Comlink with MiningCo. --
+"Though we did our best to heal {0}, it seems {1} metabolism was disturbed by the last injection.
+
+I am afraid that we need to immediately send {2} back to you as our rules strictly forbid civilian body storage.
+
+Please accept these silvers as a compensation.
+
+MiningCo. medibay officer out."
+
+-- End of transmission --</MCS.healingfail>
+</LanguageData>
