@@ -1,5 +1,8 @@
 # Changelog for MiningCoSpaceship
 
+1.4.1 - Changed the designation category to Misc since vanilla blocks the ship-category with research for some reason
+
+
 1.4.0 - First publish.
 Used DeepL to update translations for ChineseSimplified, French, German, Russian
 

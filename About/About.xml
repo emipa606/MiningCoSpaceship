@@ -35,7 +35,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1221668621
 [img]https://i.imgur.com/Z4GOv8H.png[/img]
 This mod adds MiningCo. spaceships. See the forum thread for content/changelog. https://ludeon.com/forums/index.php?topic=14711.msg153947#msg153947
 
-[h1]PLEASE START A NEW WORLD AND COLONY![/h1] Otherwise, you may get errors about null faction (or use Orion's Faction discovery mod).
+[strike][h1]PLEASE START A NEW WORLD AND COLONY![/h1] Otherwise, you may get errors about null faction (or use Orion's Faction discovery mod).[/strike] 
 [url=http://steamcommunity.com/workshop/filedetails/discussion/1221668621/1500126447404080792/]A FAQ is available[/url]. Take a minute to read it! :-)
 
 [h1]MiningCo.: spaceship[/h1]
@@ -86,5 +86,6 @@ Possible incompatibility
 [*] For best support, please use the Discord-channel for error-reporting.
 [*] Do not report errors by making a discussion-thread, I get no notification of that.
 [*] If you have the solution for a problem, please post it to the GitHub repository.
-[/list]</description>
+[/list]
+[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2912642991]Last updated 2023-01-21[/url]</description>
 </ModMetaData>

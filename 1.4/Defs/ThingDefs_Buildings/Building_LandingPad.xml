@@ -33,7 +33,7 @@
       <Steel>100</Steel>
       <ComponentIndustrial>2</ComponentIndustrial>
     </costList>
-    <designationCategory>Ship</designationCategory>
+    <designationCategory>Misc</designationCategory>
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
     <placeWorkers>
       <li>Spaceship.PlaceWorker_TotallyNotUnderRoof</li>
