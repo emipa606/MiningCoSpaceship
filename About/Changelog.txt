@@ -1,5 +1,8 @@
 # Changelog for MiningCoSpaceship
 
+1.4.2 - Last update, added end-of-life message
+
+
 1.4.1 - Changed the designation category to Misc since vanilla blocks the ship-category with research for some reason
 
 

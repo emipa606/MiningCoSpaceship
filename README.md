@@ -8,7 +8,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1221668621
 - Opened all strings for translation
 - If https://steamcommunity.com/workshop/filedetails/?id=2023507013]Vanilla Expanded Framework is active this mod can be added to an existing save. Just choose to add the faction at first startup after activating the mod.
 
-![Image](https://i.imgur.com/pufA0kM.png)
+![Image](https://i.imgur.com/CN9Rs5X.png)
 
 	
 ![Image](https://i.imgur.com/Z4GOv8H.png)
@@ -74,4 +74,4 @@ Possible incompatibility
 -  If you have the solution for a problem, please post it to the GitHub repository.
 
 
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2912642991]Last updated 2023-01-21
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2912642991]Last updated 2023-02-20
