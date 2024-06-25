@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-	<HugsLib.UpdateFeatureDef Abstract="true" Name="MiningCoSpaceship_UpdateFeatureBase">
-		<modNameReadable>MiningCoSpaceship</modNameReadable>
-		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2912642991</linkUrl>
-	</HugsLib.UpdateFeatureDef>
-	<HugsLib.UpdateFeatureDef ParentName="MiningCoSpaceship_UpdateFeatureBase">
-		<defName>MiningCoSpaceship_1_4_2</defName>
-		<assemblyVersion>1.4.2</assemblyVersion>
-		<content>The original version of this mod has been updated, please use it instead. This version will remain, but unlisted and will not be updated further.</content>
-	</HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef Abstract="true" Name="MiningCoSpaceship_UpdateFeatureBase">
+    <modNameReadable>MiningCoSpaceship</modNameReadable>
+    <linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2912642991</linkUrl>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="MiningCoSpaceship_UpdateFeatureBase">
+    <defName>MiningCoSpaceship_1_4_2</defName>
+    <assemblyVersion>1.4.2</assemblyVersion>
+    <content>The original version of this mod has been updated, please use it instead. This version will remain, but unlisted and will not be updated further.</content>
+  </HugsLib.UpdateFeatureDef>
 </Defs>
-

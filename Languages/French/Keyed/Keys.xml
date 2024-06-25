@@ -108,4 +108,5 @@ Utilisez la console du relais orbital pour procéder.</MCS.partnershipfeeTT>
   <MCS.dispatchdrop>Un répartiteur de MiningCo. dépose une équipe d'expédition.</MCS.dispatchdrop>
   <MCS.setnewtarget>Fixer un nouvel objectif</MCS.setnewtarget>
   <MCS.setnewtargetTT>Désigner une nouvelle cible de frappe aérienne. Cela peut retarder le prochain passage car le navire d'attaque doit modifier sa trajectoire prévue. Ne peut désigner qu'une position non embrumée.</MCS.setnewtargetTT>
+  <MCS.shiptakingoff>Un vaisseau spatial de MiningCo. décolle.</MCS.shiptakingoff>
 </LanguageData>

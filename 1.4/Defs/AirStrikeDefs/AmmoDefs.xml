@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <!-- WARNING! Only Projectile_Explosive ammo work for now. Otherwise, there is a strange error returned by the battle log on impact (cannot determine one of the filed?). -->
   <ThingDef ParentName="BaseBullet">

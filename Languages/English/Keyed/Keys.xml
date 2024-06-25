@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <MCS.nextstrike>Next strike in {0}.</MCS.nextstrike>
   <MCS.roof>roof</MCS.roof>
@@ -21,6 +21,7 @@
   <MCS.materialsok>Needed materials have been transferred to the damaged spaceship. You can now begin repairs.</MCS.materialsok>
   <MCS.nomaterials>Not enough materials to perform repairs. Ensure the materials are stockpiled near the spaceship.</MCS.nomaterials>
   <MCS.takeoffasap>Taking off ASAP</MCS.takeoffasap>
+  <MCS.shiptakingoff>A MiningCo. spaceship is taking off.</MCS.shiptakingoff>
   <MCS.planedtakeoff>Planned take-off: {0}</MCS.planedtakeoff>
   <MCS.tradewithcargo>Trade with cargo spaceship</MCS.tradewithcargo>
   <MCS.shiptitle>MiningCo. spaceship</MCS.shiptitle>

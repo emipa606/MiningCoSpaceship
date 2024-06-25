@@ -108,4 +108,5 @@
   <MCS.dispatchdrop>Диспетчер компании MiningCo. высаживает экспедиционную группу.</MCS.dispatchdrop>
   <MCS.setnewtarget>Установите новую цель</MCS.setnewtarget>
   <MCS.setnewtargetTT>Назначить новую цель авиаудара. Это может задержать следующий заход, так как ударному кораблю придется изменить запланированную траекторию. Можно обозначить только незатуманенную позицию.</MCS.setnewtargetTT>
+  <MCS.shiptakingoff>Взлетает космический корабль компании MiningCo.</MCS.shiptakingoff>
 </LanguageData>

@@ -108,4 +108,5 @@ Benutzen Sie die Orbitalrelaiskonsole, um fortzufahren.</MCS.partnershipfeeTT>
   <MCS.dispatchdrop>Ein Disponent von MiningCo. setzt ein Expeditionsteam ab.</MCS.dispatchdrop>
   <MCS.setnewtarget>Neues Ziel festlegen</MCS.setnewtarget>
   <MCS.setnewtargetTT>Bestimmen Sie ein neues Ziel für einen Luftangriff. Dies kann den nächsten Einsatz verzögern, da das Kampfschiff seine geplante Flugbahn ändern muss. Es kann nur eine nicht vernebelte Position bestimmt werden.</MCS.setnewtargetTT>
+  <MCS.shiptakingoff>Ein Raumschiff der MiningCo. hebt ab.</MCS.shiptakingoff>
 </LanguageData>

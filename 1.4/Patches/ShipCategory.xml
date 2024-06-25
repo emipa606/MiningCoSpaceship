@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>/Defs/DesignationCategoryDef[defName = "Ship"]/researchPrerequisites/li[text()="ShipBasics"]</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationRemove">
+        <xpath>/Defs/DesignationCategoryDef[defName = "Ship"]/researchPrerequisites/li[text()="ShipBasics"]</xpath>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

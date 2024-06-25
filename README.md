@@ -1,4 +1,4 @@
-# MiningCoSpaceship
+# [MiningCo. Spaceship (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2912642991)
 
 ![Image](https://i.imgur.com/buuPQel.png)
 
@@ -6,18 +6,17 @@ Update of Rikikis mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1221668621
 
 - Opened all strings for translation
-- If https://steamcommunity.com/workshop/filedetails/?id=2023507013]Vanilla Expanded Framework is active this mod can be added to an existing save. Just choose to add the faction at first startup after activating the mod.
+- If [Vanilla Expanded Framework](https://steamcommunity.com/workshop/filedetails/?id=2023507013) is active this mod can be added to an existing save. Just choose to add the faction at first startup after activating the mod.
 
-![Image](https://i.imgur.com/CN9Rs5X.png)
-
+![Image](https://i.imgur.com/pufA0kM.png)
 	
 ![Image](https://i.imgur.com/Z4GOv8H.png)
 
 This mod adds MiningCo. spaceships. See the forum thread for content/changelog. https://ludeon.com/forums/index.php?topic=14711.msg153947#msg153947
 
-[strike]# PLEASE START A NEW WORLD AND COLONY!
- Otherwise, you may get errors about null faction (or use Orion's Faction discovery mod).[/strike] 
-http://steamcommunity.com/workshop/filedetails/discussion/1221668621/1500126447404080792/]A FAQ is available. Take a minute to read it! :-)
+~~# PLEASE START A NEW WORLD AND COLONY!
+ Otherwise, you may get errors about null faction (or use Orion's Faction discovery mod).~~ 
+[A FAQ is available](http://steamcommunity.com/workshop/filedetails/discussion/1221668621/1500126447404080792/). Take a minute to read it! :-)
 
 # MiningCo.: spaceship
 
@@ -68,10 +67,12 @@ Possible incompatibility
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib and command Ctrl+F12
+-  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
+-  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
 
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2912642991]Last updated 2023-02-20
+
+[![Image](https://img.shields.io/github/v/release/emipa606/MiningCoSpaceship?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2912642991)

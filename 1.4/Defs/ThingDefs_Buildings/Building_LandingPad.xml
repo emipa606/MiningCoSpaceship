@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <ThingDef ParentName="BuildingBase">
     <defName>LandingPad</defName>
@@ -33,7 +33,7 @@
       <Steel>100</Steel>
       <ComponentIndustrial>2</ComponentIndustrial>
     </costList>
-    <designationCategory>Misc</designationCategory>
+    <designationCategory>Ship</designationCategory>
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
     <placeWorkers>
       <li>Spaceship.PlaceWorker_TotallyNotUnderRoof</li>
