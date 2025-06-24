@@ -5,7 +5,7 @@ namespace Spaceship;
 
 public class Building_SpaceshipDispatcherPick : Building_SpaceshipDispatcher
 {
-    public override bool takeOffRequestIsEnabled => true;
+    protected override bool takeOffRequestIsEnabled => true;
 
     public void InitializeData_DispatcherPick(Faction faction, int hitPoints, int landingDuration,
         SpaceshipKind kind)

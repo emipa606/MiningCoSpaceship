@@ -39,14 +39,14 @@ public class TransitionAction_CheckExitSpotIsValid : TransitionAction
         }
 
         ((LordJob_MiningCoBase)lord.LordJob).targetDestination = exitSpot;
-        if (trans.target is LordToil_Travel lordToil_Travel)
+        switch (trans.target)
         {
-            lordToil_Travel.SetDestination(exitSpot);
-        }
-
-        if (trans.target is LordToil_EscortDownedPawn lordToil_EscortDownedPawn)
-        {
-            lordToil_EscortDownedPawn.SetDestination(exitSpot);
+            case LordToil_Travel lordToilTravel:
+                lordToilTravel.SetDestination(exitSpot);
+                break;
+            case LordToil_EscortDownedPawn lordToilEscortDownedPawn:
+                lordToilEscortDownedPawn.SetDestination(exitSpot);
+                break;
         }
     }
 }

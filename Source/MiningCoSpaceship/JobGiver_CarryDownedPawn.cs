@@ -17,20 +17,20 @@ public class JobGiver_CarryDownedPawn : ThinkNode_JobGiver
 
     protected override Job TryGiveJob(Pawn pawn)
     {
-        var lordToil_EscortDownedPawn = pawn.GetLord().CurLordToil as LordToil_EscortDownedPawn;
+        var lordToilEscortDownedPawn = pawn.GetLord().CurLordToil as LordToil_EscortDownedPawn;
         var nearestReachableDownedPawn = Util_DownedPawn.GetNearestReachableDownedPawn(pawn);
         if (nearestReachableDownedPawn != null)
         {
-            if (lordToil_EscortDownedPawn != null)
+            if (lordToilEscortDownedPawn != null)
             {
                 var job = JobMaker.MakeJob(Util_JobDefOf.JobDef_CarryDownedPawn, nearestReachableDownedPawn,
-                    lordToil_EscortDownedPawn.Data.targetDestination);
+                    lordToilEscortDownedPawn.Data.targetDestination);
                 job.count = 1;
                 return job;
             }
         }
 
-        lordToil_EscortDownedPawn?.Notify_RescueEnded();
+        lordToilEscortDownedPawn?.Notify_RescueEnded();
         return null;
     }
 }

@@ -15,19 +15,19 @@ public static class Util_Spaceship
 
     public const int medicsRecallBeforeTakeOffMarginInTicks = 15000;
 
-    public const int cargoPeriodicSupplyLandingDuration = 30000;
+    private const int CargoPeriodicSupplyLandingDuration = 30000;
 
-    public const int cargoRequestedSupplyLandingDuration = 60000;
+    private const int CargoRequestedSupplyLandingDuration = 60000;
 
-    public const int dispatcherDropDurationInTicks = 5000;
+    private const int DispatcherDropDurationInTicks = 5000;
 
-    public const int dispatcherPickDurationInTicks = 120000;
+    private const int DispatcherPickDurationInTicks = 120000;
 
-    public const int medicalSupplyLandingDuration = 60000;
+    private const int MedicalSupplyLandingDuration = 60000;
 
-    public static IntRange damagedSpaceshipLandingDuration = new IntRange(480000, 720000);
+    private static IntRange damagedSpaceshipLandingDuration = new(480000, 720000);
 
-    public static ThingDef SpaceshipLanding => ThingDef.Named("FlyingSpaceshipLanding");
+    private static ThingDef SpaceshipLanding => ThingDef.Named("FlyingSpaceshipLanding");
 
     public static ThingDef SpaceshipTakingOff => ThingDef.Named("FlyingSpaceshipTakingOff");
 
@@ -41,7 +41,7 @@ public static class Util_Spaceship
 
     public static ThingDef SpaceshipMedical => ThingDef.Named("SpaceshipMedical");
 
-    public static ThingDef SpaceshipAirstrike => ThingDef.Named("FlyingSpaceshipAirstrike");
+    private static ThingDef SpaceshipAirstrike => ThingDef.Named("FlyingSpaceshipAirstrike");
 
     public static FlyingSpaceshipLanding SpawnLandingSpaceship(Building_LandingPad landingPad,
         SpaceshipKind spaceshipKind)
@@ -51,14 +51,14 @@ public static class Util_Spaceship
         switch (spaceshipKind)
         {
             case SpaceshipKind.CargoPeriodic:
-                landingDuration = cargoPeriodicSupplyLandingDuration;
+                landingDuration = CargoPeriodicSupplyLandingDuration;
                 orbitalRelay?.Notify_CargoSpaceshipPeriodicLanding();
                 Util_Misc.Partnership.nextPeriodicSupplyTick[landingPad.Map] = Find.TickManager.TicksGame + 600000;
                 Messages.Message("MCS.cargoshiplanding".Translate(),
                     new TargetInfo(landingPad.Position, landingPad.Map), MessageTypeDefOf.NeutralEvent);
                 break;
             case SpaceshipKind.CargoRequested:
-                landingDuration = cargoRequestedSupplyLandingDuration;
+                landingDuration = CargoRequestedSupplyLandingDuration;
                 orbitalRelay?.Notify_CargoSpaceshipRequestedLanding();
                 Util_Misc.Partnership.nextRequestedSupplyMinTick[landingPad.Map] = Find.TickManager.TicksGame + 300000;
                 Messages.Message("MCS.cargoshiplanding".Translate(),
@@ -68,17 +68,17 @@ public static class Util_Spaceship
                 landingDuration = damagedSpaceshipLandingDuration.RandomInRange;
                 break;
             case SpaceshipKind.DispatcherDrop:
-                landingDuration = dispatcherDropDurationInTicks;
+                landingDuration = DispatcherDropDurationInTicks;
                 Messages.Message("MCS.dispatchdrop".Translate(),
                     new TargetInfo(landingPad.Position, landingPad.Map), MessageTypeDefOf.NeutralEvent);
                 break;
             case SpaceshipKind.DispatcherPick:
-                landingDuration = dispatcherPickDurationInTicks;
+                landingDuration = DispatcherPickDurationInTicks;
                 Messages.Message("MCS.dispatchdrop".Translate(),
                     new TargetInfo(landingPad.Position, landingPad.Map), MessageTypeDefOf.NeutralEvent);
                 break;
             case SpaceshipKind.Medical:
-                landingDuration = medicalSupplyLandingDuration;
+                landingDuration = MedicalSupplyLandingDuration;
                 orbitalRelay?.Notify_MedicalSpaceshipLanding();
                 Util_Misc.Partnership.nextMedicalSupplyMinTick[landingPad.Map] = Find.TickManager.TicksGame + 300000;
                 Messages.Message("MCS.medicshiplanding".Translate(),

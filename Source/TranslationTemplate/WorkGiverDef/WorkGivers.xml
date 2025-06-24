@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: transfer downed pawn to medibay -->
+  <TransferToMedibay.label>transfer downed pawn to medibay</TransferToMedibay.label>
+  <!-- EN: transferring to medibay -->
+  <TransferToMedibay.gerund>transferring to medibay</TransferToMedibay.gerund>
+  <!-- EN: transfer to medibay -->
+  <TransferToMedibay.verb>transfer to medibay</TransferToMedibay.verb>
+</LanguageData>

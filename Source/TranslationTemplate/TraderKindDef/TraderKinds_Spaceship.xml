@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: damaged cargo -->
+  <SpaceshipCargoDamaged.label>damaged cargo</SpaceshipCargoDamaged.label>
+  <!-- EN: dispatcher cargo -->
+  <SpaceshipCargoDispatcher.label>dispatcher cargo</SpaceshipCargoDispatcher.label>
+  <!-- EN: medical cargo -->
+  <SpaceshipCargoMedical.label>medical cargo</SpaceshipCargoMedical.label>
+  <!-- EN: periodic supply -->
+  <SpaceshipCargoPeriodicSupply.label>periodic supply</SpaceshipCargoPeriodicSupply.label>
+  <!-- EN: special delivery -->
+  <SpaceshipCargoRequestedSupply.label>special delivery</SpaceshipCargoRequestedSupply.label>
+</LanguageData>

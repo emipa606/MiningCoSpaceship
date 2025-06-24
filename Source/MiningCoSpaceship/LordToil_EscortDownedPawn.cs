@@ -24,10 +24,7 @@ public class LordToil_EscortDownedPawn : LordToil
 
     public override void UpdateAllDuties()
     {
-        if (Data.carrier == null)
-        {
-            Data.carrier = lord.ownedPawns.RandomElement();
-        }
+        Data.carrier ??= lord.ownedPawns.RandomElement();
 
         foreach (var pawn in lord.ownedPawns)
         {

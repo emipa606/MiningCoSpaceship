@@ -1,0 +1,6 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Release" />
+  </Configurations>
+  <Project Path="MiningCoSpaceship/MiningCo.-Spaceship.csproj" />
+</Solution>

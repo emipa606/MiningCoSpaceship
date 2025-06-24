@@ -10,19 +10,19 @@ public class FlyingSpaceshipLanding : FlyingSpaceship
 {
     public const int horizontalTrajectoryDurationInTicks = 480;
 
-    public const float verticalTrajectoryDurationInTicks = 240;
+    private const float VerticalTrajectoryDurationInTicks = 240;
 
-    public static readonly SoundDef preLandingSound = SoundDef.Named("DropPodFall");
+    private static readonly SoundDef preLandingSound = SoundDef.Named("DropPodFall");
 
-    public static readonly SoundDef landingSound = SoundDef.Named("SpaceshipLanding");
+    private static readonly SoundDef landingSound = SoundDef.Named("SpaceshipLanding");
 
-    public int landingDuration;
+    private int landingDuration;
 
-    public IntVec3 landingPadPosition = IntVec3.Invalid;
+    private IntVec3 landingPadPosition = IntVec3.Invalid;
 
-    public Rot4 landingPadRotation = Rot4.North;
+    private Rot4 landingPadRotation = Rot4.North;
 
-    public int ticksToLanding = 720;
+    private int ticksToLanding = 720;
 
     public void InitializeLandingParameters(Building_LandingPad landingPad, int duration,
         SpaceshipKind kind)
@@ -46,7 +46,7 @@ public class FlyingSpaceshipLanding : FlyingSpaceship
         Scribe_Values.Look(ref landingDuration, "landingDuration");
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         if (ticksToLanding == 720)
@@ -55,16 +55,16 @@ public class FlyingSpaceshipLanding : FlyingSpaceship
         }
 
         ticksToLanding--;
-        if (ticksToLanding == verticalTrajectoryDurationInTicks)
+        if (ticksToLanding == VerticalTrajectoryDurationInTicks)
         {
             landingSound.PlayOneShot(new TargetInfo(Position, Map));
         }
 
-        if (ticksToLanding <= verticalTrajectoryDurationInTicks)
+        if (ticksToLanding <= VerticalTrajectoryDurationInTicks)
         {
             FleckMaker.ThrowDustPuff(
                 GenAdj.CellsAdjacentCardinal(landingPadPosition, landingPadRotation, Util_ThingDefOf.LandingPad.Size)
-                    .RandomElement(), Map, 3f * (1f - (ticksToLanding / verticalTrajectoryDurationInTicks)));
+                    .RandomElement(), Map, 3f * (1f - (ticksToLanding / VerticalTrajectoryDurationInTicks)));
         }
 
         if (ticksToLanding != 0)
@@ -77,49 +77,49 @@ public class FlyingSpaceshipLanding : FlyingSpaceship
             case SpaceshipKind.CargoPeriodic:
             case SpaceshipKind.CargoRequested:
             {
-                var building_SpaceshipCargo =
+                var buildingSpaceshipCargo =
                     ThingMaker.MakeThing(Util_Spaceship.SpaceshipCargo) as Building_SpaceshipCargo;
-                building_SpaceshipCargo?.InitializeData_Cargo(Util_Faction.MiningCoFaction, HitPoints,
+                buildingSpaceshipCargo?.InitializeData_Cargo(Util_Faction.MiningCoFaction, HitPoints,
                     landingDuration, spaceshipKind);
-                GenSpawn.Spawn(building_SpaceshipCargo, landingPadPosition, Map, landingPadRotation);
+                GenSpawn.Spawn(buildingSpaceshipCargo, landingPadPosition, Map, landingPadRotation);
                 break;
             }
             case SpaceshipKind.Damaged:
             {
-                var building_SpaceshipDamaged =
+                var buildingSpaceshipDamaged =
                     ThingMaker.MakeThing(Util_Spaceship.SpaceshipDamaged) as Building_SpaceshipDamaged;
-                building_SpaceshipDamaged?.InitializeData_Damaged(Util_Faction.MiningCoFaction, HitPoints,
+                buildingSpaceshipDamaged?.InitializeData_Damaged(Util_Faction.MiningCoFaction, HitPoints,
                     landingDuration, spaceshipKind, HitPoints);
-                GenSpawn.Spawn(building_SpaceshipDamaged, landingPadPosition, Map, landingPadRotation);
+                GenSpawn.Spawn(buildingSpaceshipDamaged, landingPadPosition, Map, landingPadRotation);
                 break;
             }
             case SpaceshipKind.DispatcherDrop:
             {
-                var building_SpaceshipDispatcherDrop =
+                var buildingSpaceshipDispatcherDrop =
                     ThingMaker.MakeThing(Util_Spaceship
                         .SpaceshipDispatcherDrop) as Building_SpaceshipDispatcherDrop;
-                building_SpaceshipDispatcherDrop?.InitializeData_DispatcherDrop(Util_Faction.MiningCoFaction, HitPoints,
+                buildingSpaceshipDispatcherDrop?.InitializeData_DispatcherDrop(Util_Faction.MiningCoFaction, HitPoints,
                     landingDuration, spaceshipKind);
-                GenSpawn.Spawn(building_SpaceshipDispatcherDrop, landingPadPosition, Map, landingPadRotation);
+                GenSpawn.Spawn(buildingSpaceshipDispatcherDrop, landingPadPosition, Map, landingPadRotation);
                 break;
             }
             case SpaceshipKind.DispatcherPick:
             {
-                var building_SpaceshipDispatcherPick =
+                var buildingSpaceshipDispatcherPick =
                     ThingMaker.MakeThing(Util_Spaceship
                         .SpaceshipDispatcherPick) as Building_SpaceshipDispatcherPick;
-                building_SpaceshipDispatcherPick?.InitializeData_DispatcherPick(Util_Faction.MiningCoFaction, HitPoints,
+                buildingSpaceshipDispatcherPick?.InitializeData_DispatcherPick(Util_Faction.MiningCoFaction, HitPoints,
                     landingDuration, spaceshipKind);
-                GenSpawn.Spawn(building_SpaceshipDispatcherPick, landingPadPosition, Map, landingPadRotation);
+                GenSpawn.Spawn(buildingSpaceshipDispatcherPick, landingPadPosition, Map, landingPadRotation);
                 break;
             }
             case SpaceshipKind.Medical:
             {
-                var building_SpaceshipMedical =
+                var buildingSpaceshipMedical =
                     ThingMaker.MakeThing(Util_Spaceship.SpaceshipMedical) as Building_SpaceshipMedical;
-                building_SpaceshipMedical?.InitializeData_Medical(Util_Faction.MiningCoFaction, HitPoints,
+                buildingSpaceshipMedical?.InitializeData_Medical(Util_Faction.MiningCoFaction, HitPoints,
                     landingDuration, spaceshipKind);
-                GenSpawn.Spawn(building_SpaceshipMedical, landingPadPosition, Map, landingPadRotation);
+                GenSpawn.Spawn(buildingSpaceshipMedical, landingPadPosition, Map, landingPadRotation);
                 break;
             }
             default:
@@ -130,7 +130,7 @@ public class FlyingSpaceshipLanding : FlyingSpaceship
         Destroy();
     }
 
-    public override void ComputeShipExactPosition()
+    protected override void ComputeShipExactPosition()
     {
         var vector = landingPadPosition.ToVector3ShiftedWithAltitude(def.altitudeLayer.AltitudeFor());
         if (spaceshipKind != SpaceshipKind.Medical)
@@ -138,9 +138,9 @@ public class FlyingSpaceshipLanding : FlyingSpaceship
             vector += new Vector3(0f, 0f, 0.5f).RotatedBy(landingPadRotation.AsAngle);
         }
 
-        if (ticksToLanding > verticalTrajectoryDurationInTicks)
+        if (ticksToLanding > VerticalTrajectoryDurationInTicks)
         {
-            var num = ticksToLanding - verticalTrajectoryDurationInTicks;
+            var num = ticksToLanding - VerticalTrajectoryDurationInTicks;
             var z = num * num * 0.001f * 0.8f;
             vector -= new Vector3(0f, 0f, z).RotatedBy(spaceshipExactRotation);
         }
@@ -148,38 +148,38 @@ public class FlyingSpaceshipLanding : FlyingSpaceship
         spaceshipExactPosition = vector;
     }
 
-    public override void ComputeShipShadowExactPosition()
+    protected override void ComputeShipShadowExactPosition()
     {
         spaceshipShadowExactPosition = spaceshipExactPosition;
         var num = 2f;
-        if (ticksToLanding < verticalTrajectoryDurationInTicks)
+        if (ticksToLanding < VerticalTrajectoryDurationInTicks)
         {
-            num *= ticksToLanding / verticalTrajectoryDurationInTicks;
+            num *= ticksToLanding / VerticalTrajectoryDurationInTicks;
         }
 
         var lightSourceInfo = GenCelestial.GetLightSourceInfo(Map, GenCelestial.LightType.Shadow);
         spaceshipShadowExactPosition += new Vector3(lightSourceInfo.vector.x, -0.01f, lightSourceInfo.vector.y) * num;
     }
 
-    public override void ComputeShipExactRotation()
+    protected override void ComputeShipExactRotation()
     {
     }
 
-    public override void ComputeShipScale()
+    protected override void ComputeShipScale()
     {
         var num = 1.2f;
         var num2 = 0.9f;
-        if (ticksToLanding <= verticalTrajectoryDurationInTicks)
+        if (ticksToLanding <= VerticalTrajectoryDurationInTicks)
         {
-            num = 1f + (0.2f * (ticksToLanding / verticalTrajectoryDurationInTicks));
-            num2 = 1f - (0.1f * (ticksToLanding / verticalTrajectoryDurationInTicks));
+            num = 1f + (0.2f * (ticksToLanding / VerticalTrajectoryDurationInTicks));
+            num2 = 1f - (0.1f * (ticksToLanding / VerticalTrajectoryDurationInTicks));
         }
 
         spaceshipScale = baseSpaceshipScale * num;
         spaceshipShadowScale = baseSpaceshipScale * num2;
     }
 
-    public override void SetShipPositionToBeSelectable()
+    protected override void SetShipPositionToBeSelectable()
     {
         Position = IsInBounds() ? spaceshipExactPosition.ToIntVec3() : landingPadPosition;
     }

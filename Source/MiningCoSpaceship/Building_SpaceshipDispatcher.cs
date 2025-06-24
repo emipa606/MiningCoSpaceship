@@ -6,21 +6,21 @@ namespace Spaceship;
 
 public abstract class Building_SpaceshipDispatcher : Building_Spaceship
 {
-    public const int turretsCount = 2;
+    private const int TurretsCount = 2;
 
-    public readonly IntVec3[] turretOffsetPositions =
+    private readonly IntVec3[] turretOffsetPositions =
     [
-        new IntVec3(-4, 0, -2),
-        new IntVec3(4, 0, -2)
+        new(-4, 0, -2),
+        new(4, 0, -2)
     ];
 
-    public readonly Rot4[] turretOffsetRotations =
+    private readonly Rot4[] turretOffsetRotations =
     [
         Rot4.West,
         Rot4.East
     ];
 
-    public override bool takeOffRequestIsEnabled => true;
+    protected override bool takeOffRequestIsEnabled => true;
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
@@ -30,7 +30,7 @@ public abstract class Building_SpaceshipDispatcher : Building_Spaceship
             return;
         }
 
-        for (var i = 0; i < turretsCount; i++)
+        for (var i = 0; i < TurretsCount; i++)
         {
             var thing = ThingMaker.MakeThing(Util_ThingDefOf.VulcanTurret, ThingDefOf.Plasteel);
             thing.SetFaction(Util_Faction.MiningCoFaction);
@@ -41,7 +41,7 @@ public abstract class Building_SpaceshipDispatcher : Building_Spaceship
 
     public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
     {
-        for (var i = 0; i < turretsCount; i++)
+        for (var i = 0; i < TurretsCount; i++)
         {
             (Position + turretOffsetPositions[i].RotatedBy(Rotation)).GetFirstThing(Map, Util_ThingDefOf.VulcanTurret)
                 ?.Destroy();

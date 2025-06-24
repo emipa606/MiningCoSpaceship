@@ -1,0 +1,49 @@
+ManifestFileVersion: 0
+CRC: 1600294814
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 661accee847b21328c073ea5c08895e2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ce3b6d18a872ca8039cd5eb3c4fb7ef5
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 661accee847b21328c073ea5c08895e2
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Ui/Commands/Commands_Primary.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Building/OrbitalRelay/MenuIcon_OrbitalRelay.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Building/OrbitalRelay/SatelliteDish.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Projectile/AutocannonRound.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Pawn/Humanlike/Apparel/SimpleHelmetMedic/SimpleHelmetMedic_east.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/SupplySpaceship/SupplySpaceshipShadow.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Pawn/Humanlike/Apparel/SimpleHelmetMedic/SimpleHelmetMedic.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/StrikeShip/StrikeShip.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Building/OrbitalRelay/OrbitalRelay.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/DummyTexture.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Dispatcher/Dispatcher.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Pawn/Humanlike/Apparel/SimpleHelmetMedic/SimpleHelmetMedic_north.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/MedicalSpaceship/MedicalSpaceship.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Building/LandingPad/LandingPad.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Dispatcher/DispatcherFlying.png
+- Assets/Data/Mlie.MiningCoSpaceship/Sounds/Spaceship/TakingOff.ogg
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/World/MiningCoBaseIcon.png
+- Assets/Data/Mlie.MiningCoSpaceship/Sounds/Spaceship/Landing.ogg
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/MedicalSpaceship/MedicalSpaceshipShadow.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Building/AirStrikeBeacon/AirStrikeBeacon.png
+- Assets/Data/Mlie.MiningCoSpaceship/Sounds/Airstrike/Airstrike.ogg
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Building/Security/VulcanTurret/DummyTexture.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Building/Security/VulcanTurret/VulcanTurret_Top.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Building/LandingPadBeacon/LandingPadBeacon.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Ui/Commands/Commands_Ancillary.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Building/LandingPadBeacon/DummyTexture.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/SupplySpaceship/SupplySpaceship.png
+- Assets/Data/Mlie.MiningCoSpaceship/Textures/Things/Pawn/Humanlike/Apparel/SimpleHelmetMedic/SimpleHelmetMedic_south.png
+Dependencies: []

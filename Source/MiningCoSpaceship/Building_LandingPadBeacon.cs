@@ -5,22 +5,22 @@ namespace Spaceship;
 
 public class Building_LandingPadBeacon : Building
 {
-    public Color color = Color.white;
+    private Color color = Color.white;
 
-    public Thing glower;
+    private Thing glower;
 
-    public bool isPoweredOn;
+    private bool isPoweredOn;
     public Building_LandingPad landingPad;
 
-    public int lightDelayInTicks;
+    private int lightDelayInTicks;
 
-    public int lightDurationInTicks = 10;
+    private int lightDurationInTicks = 10;
 
-    public int lightPeriodInTicks = 900;
+    private int lightPeriodInTicks = 900;
 
-    public int nextLightStartTick;
+    private int nextLightStartTick;
 
-    public int nextLightStopTick;
+    private int nextLightStopTick;
 
     public void InitializeParameters(Building_LandingPad pad, Color padColor, int periodInTicks,
         int durationInTicks, int delayInTicks)
@@ -35,7 +35,7 @@ public class Building_LandingPadBeacon : Building
 
     public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
     {
-        SwitchOffLight();
+        switchOffLight();
         base.Destroy(mode);
     }
 
@@ -53,10 +53,10 @@ public class Building_LandingPadBeacon : Building
         Scribe_References.Look(ref glower, "glower");
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
-        if (!Settings.landingPadLightIsEnabled || !isPoweredOn)
+        if (!Settings.LandingPadLightIsEnabled || !isPoweredOn)
         {
             return;
         }
@@ -70,11 +70,11 @@ public class Building_LandingPadBeacon : Building
 
         if (Find.TickManager.TicksGame >= nextLightStopTick)
         {
-            SwitchOffLight();
+            switchOffLight();
         }
     }
 
-    public void SwitchOnLight()
+    private void SwitchOnLight()
     {
         if (!glower.DestroyedOrNull())
         {
@@ -99,7 +99,7 @@ public class Building_LandingPadBeacon : Building
         }
     }
 
-    public void SwitchOffLight()
+    private void switchOffLight()
     {
         if (glower.DestroyedOrNull())
         {
@@ -119,6 +119,6 @@ public class Building_LandingPadBeacon : Building
     public void Notify_PowerStopped()
     {
         isPoweredOn = false;
-        SwitchOffLight();
+        switchOffLight();
     }
 }

@@ -8,7 +8,7 @@ namespace Spaceship;
 
 public static class Util_Faction
 {
-    public static FactionDef MiningCoFactionDef => FactionDef.Named("MiningCo");
+    private static FactionDef MiningCoFactionDef => FactionDef.Named("MiningCo");
 
     public static Faction MiningCoFaction => Find.FactionManager.FirstFactionOfDef(MiningCoFactionDef);
 

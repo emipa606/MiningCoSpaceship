@@ -19,44 +19,44 @@ public class LordJob_BoardSpaceship : LordJob_MiningCoBase
     public override StateGraph CreateGraph()
     {
         var stateGraph = new StateGraph();
-        var lordToil_Travel = (LordToil_Travel)(stateGraph.StartingToil = new LordToil_Travel(targetDestination));
-        var lordToil_DefendPoint = new LordToil_DefendPoint(false);
-        stateGraph.AddToil(lordToil_DefendPoint);
-        var lordToil_BoardSpaceship = new LordToil_BoardSpaceship(targetDestination, locomotionUrgency);
-        stateGraph.AddToil(lordToil_BoardSpaceship);
-        var lordToil_EscortDownedPawn = new LordToil_EscortDownedPawn(targetDestination, locomotionUrgency);
-        stateGraph.AddToil(lordToil_EscortDownedPawn);
+        var lordToilTravel = (LordToil_Travel)(stateGraph.StartingToil = new LordToil_Travel(targetDestination));
+        var lordToilDefendPoint = new LordToil_DefendPoint(false);
+        stateGraph.AddToil(lordToilDefendPoint);
+        var lordToilBoardSpaceship = new LordToil_BoardSpaceship(targetDestination, locomotionUrgency);
+        stateGraph.AddToil(lordToilBoardSpaceship);
+        var lordToilEscortDownedPawn = new LordToil_EscortDownedPawn(targetDestination, locomotionUrgency);
+        stateGraph.AddToil(lordToilEscortDownedPawn);
         var startingToil = stateGraph.AttachSubgraph(new LordJob_ExitMap(IntVec3.Invalid).CreateGraph()).StartingToil;
-        stateGraph.AddTransition(new Transition(lordToil_Travel, lordToil_DefendPoint)
+        stateGraph.AddTransition(new Transition(lordToilTravel, lordToilDefendPoint)
         {
             triggers = { new Trigger_PawnHarmed() },
             preActions = { new TransitionAction_SetDefendLocalGroup() },
             postActions = { new TransitionAction_EndAllJobs() }
         });
-        stateGraph.AddTransition(new Transition(lordToil_DefendPoint, lordToil_Travel)
+        stateGraph.AddTransition(new Transition(lordToilDefendPoint, lordToilTravel)
         {
             triggers = { new Trigger_TicksPassedWithoutHarm(1200) }
         });
-        stateGraph.AddTransition(new Transition(lordToil_Travel, lordToil_EscortDownedPawn)
+        stateGraph.AddTransition(new Transition(lordToilTravel, lordToilEscortDownedPawn)
         {
             triggers = { new Trigger_ReachableDownedPawn() },
             postActions = { new TransitionAction_EndAllJobs() }
         });
-        stateGraph.AddTransition(new Transition(lordToil_EscortDownedPawn, lordToil_Travel)
+        stateGraph.AddTransition(new Transition(lordToilEscortDownedPawn, lordToilTravel)
         {
             triggers = { new Trigger_Memo("RescueEnded") }
         });
-        stateGraph.AddTransition(new Transition(lordToil_Travel, lordToil_BoardSpaceship)
+        stateGraph.AddTransition(new Transition(lordToilTravel, lordToilBoardSpaceship)
         {
             triggers = { new Trigger_Memo("TravelArrived") },
             postActions = { new TransitionAction_EndAllJobs() }
         });
-        stateGraph.AddTransition(new Transition(lordToil_Travel, startingToil)
+        stateGraph.AddTransition(new Transition(lordToilTravel, startingToil)
         {
             sources =
             {
-                lordToil_EscortDownedPawn,
-                lordToil_BoardSpaceship
+                lordToilEscortDownedPawn,
+                lordToilBoardSpaceship
             },
             triggers = { new Trigger_PawnCannotReachTargetDestination() },
             postActions =
@@ -65,9 +65,9 @@ public class LordJob_BoardSpaceship : LordJob_MiningCoBase
                 new TransitionAction_EndAllJobs()
             }
         });
-        stateGraph.AddTransition(new Transition(lordToil_EscortDownedPawn, startingToil)
+        stateGraph.AddTransition(new Transition(lordToilEscortDownedPawn, startingToil)
         {
-            sources = { lordToil_BoardSpaceship },
+            sources = { lordToilBoardSpaceship },
             triggers = { new Trigger_SpaceshipNotFound() },
             postActions =
             {

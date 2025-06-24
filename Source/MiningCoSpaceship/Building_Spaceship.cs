@@ -10,19 +10,19 @@ namespace Spaceship;
 
 public abstract class Building_Spaceship : Building, IThingHolder
 {
-    public const int pilotsNumber = 2;
+    private const int pilotsNumber = 2;
 
-    public TraderKindDef cargoKind;
+    protected TraderKindDef cargoKind;
 
-    public List<Pawn> pawnsAboard = new List<Pawn>();
+    protected List<Pawn> pawnsAboard = [];
 
-    public SpaceshipKind spaceshipKind = SpaceshipKind.CargoPeriodic;
+    private SpaceshipKind spaceshipKind = SpaceshipKind.CargoPeriodic;
 
-    public int takeOffTick;
+    protected int takeOffTick;
 
-    public ThingOwner things;
+    protected ThingOwner things;
 
-    public virtual bool takeOffRequestIsEnabled => true;
+    protected virtual bool takeOffRequestIsEnabled => true;
 
     public ThingOwner GetDirectlyHeldThings()
     {
@@ -45,8 +45,8 @@ public abstract class Building_Spaceship : Building, IThingHolder
         if (things == null)
         {
             things = new ThingOwner<Thing>(this);
-            GenerateThings();
-            DestroyRoof();
+            generateThings();
+            destroyRoof();
         }
 
         for (var i = 0; i < pilotsNumber; i++)
@@ -65,7 +65,7 @@ public abstract class Building_Spaceship : Building, IThingHolder
         HitPoints = hitPoints;
         takeOffTick = Find.TickManager.TicksGame + landingDuration;
         spaceshipKind = kind;
-        cargoKind = GetCargoKind(spaceshipKind);
+        cargoKind = getCargoKind(spaceshipKind);
     }
 
     public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
@@ -75,9 +75,9 @@ public abstract class Building_Spaceship : Building, IThingHolder
 
         if (mode == DestroyMode.KillFinalize)
         {
-            SpawnSurvivingPawns();
-            SpawnExplosions();
-            SpawnFuelPuddleAndFire();
+            spawnSurvivingPawns();
+            spawnExplosions();
+            spawnFuelPuddleAndFire();
             Util_Misc.Partnership.feeInSilver[Map] += Mathf.RoundToInt(def.BaseMarketValue * 0.5f);
             var num = SpawnCargoContent(0.5f);
             Util_Misc.Partnership.feeInSilver[Map] += Mathf.RoundToInt(num * 0.5f);
@@ -108,7 +108,7 @@ public abstract class Building_Spaceship : Building, IThingHolder
                 }
             }
 
-            DestroyRoof();
+            destroyRoof();
         }
 
         things.ClearAndDestroyContentsOrPassToWorld();
@@ -125,7 +125,7 @@ public abstract class Building_Spaceship : Building, IThingHolder
         Scribe_Collections.Look(ref pawnsAboard, "pawnsAboard", LookMode.Deep);
     }
 
-    public void DestroyRoof()
+    private void destroyRoof()
     {
         foreach (var cell in this.OccupiedRect().Cells)
         {
@@ -144,7 +144,7 @@ public abstract class Building_Spaceship : Building, IThingHolder
         }
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         if (!this.DestroyedOrNull() && Find.TickManager.TicksGame >= takeOffTick &&
@@ -159,7 +159,7 @@ public abstract class Building_Spaceship : Building, IThingHolder
         takeOffTick = Find.TickManager.TicksGame;
     }
 
-    public TraderKindDef GetCargoKind(SpaceshipKind kind)
+    private TraderKindDef getCargoKind(SpaceshipKind kind)
     {
         var result = Util_TraderKindDefOf.SpaceshipCargoPeriodicSupply;
         switch (kind)
@@ -190,7 +190,7 @@ public abstract class Building_Spaceship : Building, IThingHolder
         return result;
     }
 
-    public void SpawnSurvivingPawns()
+    private void spawnSurvivingPawns()
     {
         var list = new List<Pawn>();
         foreach (var item in pawnsAboard)
@@ -215,7 +215,7 @@ public abstract class Building_Spaceship : Building, IThingHolder
         }
     }
 
-    public void SpawnExplosions()
+    private void spawnExplosions()
     {
         for (var i = 0; i < 5; i++)
         {
@@ -224,7 +224,7 @@ public abstract class Building_Spaceship : Building, IThingHolder
         }
     }
 
-    public void SpawnFuelPuddleAndFire()
+    private void spawnFuelPuddleAndFire()
     {
         for (var i = 0; i < 150; i++)
         {
@@ -280,7 +280,7 @@ public abstract class Building_Spaceship : Building, IThingHolder
         return Find.TickManager.TicksGame >= num;
     }
 
-    public void GenerateThings()
+    private void generateThings()
     {
         var parms = default(ThingSetMakerParams);
         parms.traderDef = cargoKind;
@@ -288,7 +288,7 @@ public abstract class Building_Spaceship : Building, IThingHolder
         things.TryAddRangeOrTransfer(ThingSetMakerDefOf.TraderStock.root.Generate(parms));
     }
 
-    protected IEnumerable<FloatMenuOption> GetFloatMenuOptionsCannotReach(Pawn selPawn)
+    protected static IEnumerable<FloatMenuOption> GetFloatMenuOptionsCannotReach()
     {
         var list = new List<FloatMenuOption>();
         var item = new FloatMenuOption("CannotUseNoPath".Translate(), null);

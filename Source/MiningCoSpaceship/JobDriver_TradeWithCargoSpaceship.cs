@@ -7,7 +7,7 @@ namespace Spaceship;
 
 public class JobDriver_TradeWithCargoSpaceship : JobDriver
 {
-    public readonly TargetIndex cargoSpaceshipIndex = TargetIndex.A;
+    private const TargetIndex CargoSpaceshipIndex = TargetIndex.A;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -34,6 +34,6 @@ public class JobDriver_TradeWithCargoSpaceship : JobDriver
             initAction = delegate { Find.WindowStack.Add(new Dialog_Trade(GetActor(), cargoSpaceship)); },
             defaultCompleteMode = ToilCompleteMode.Instant
         };
-        yield return Toils_Reserve.Release(cargoSpaceshipIndex);
+        yield return Toils_Reserve.Release(CargoSpaceshipIndex);
     }
 }

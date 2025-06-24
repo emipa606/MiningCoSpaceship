@@ -8,13 +8,13 @@ public class TransitionAction_CancelDispatcherPick : TransitionAction
     public override void DoAction(Transition trans)
     {
         var lord = trans.target.lord;
-        var thinglist = (lord.LordJob as LordJob_MiningCoBase)?.targetDestination.GetThingList(lord.Map);
-        if (thinglist == null)
+        var thingList = (lord.LordJob as LordJob_MiningCoBase)?.targetDestination.GetThingList(lord.Map);
+        if (thingList == null)
         {
             return;
         }
 
-        foreach (var thing in thinglist)
+        foreach (var thing in thingList)
         {
             if (thing is not Building_Spaceship buildingSpaceship)
             {

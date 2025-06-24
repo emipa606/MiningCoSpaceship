@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: landing pad beacon -->
+  <LandingPadBeacon.label>landing pad beacon</LandingPadBeacon.label>
+  <!-- EN: Beacon used by ships to land on. -->
+  <LandingPadBeacon.description>Beacon used by ships to land on.</LandingPadBeacon.description>
+  <!-- EN: beacon light -->
+  <LandingPadBeaconGlowerGreen.label>beacon light</LandingPadBeaconGlowerGreen.label>
+  <!-- EN: Landing pad beacon green light. -->
+  <LandingPadBeaconGlowerGreen.description>Landing pad beacon green light.</LandingPadBeaconGlowerGreen.description>
+  <!-- EN: beacon light -->
+  <LandingPadBeaconGlowerRed.label>beacon light</LandingPadBeaconGlowerRed.label>
+  <!-- EN: Landing pad beacon red light. -->
+  <LandingPadBeaconGlowerRed.description>Landing pad beacon red light.</LandingPadBeaconGlowerRed.description>
+  <!-- EN: beacon light -->
+  <LandingPadBeaconGlowerWhite.label>beacon light</LandingPadBeaconGlowerWhite.label>
+  <!-- EN: Landing pad beacon white light. -->
+  <LandingPadBeaconGlowerWhite.description>Landing pad beacon white light.</LandingPadBeaconGlowerWhite.description>
+</LanguageData>

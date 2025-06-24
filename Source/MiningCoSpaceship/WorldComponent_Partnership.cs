@@ -6,31 +6,31 @@ namespace Spaceship;
 
 public class WorldComponent_Partnership(World world) : WorldComponent(world)
 {
-    public const int feeInitialCostInSilver = 1000;
+    private const int feeInitialCostInSilver = 1000;
 
-    public Dictionary<Map, int> feeInSilver = new Dictionary<Map, int>();
+    public Dictionary<Map, int> feeInSilver = new();
 
-    private List<int> feeInSilverValues = new List<int>();
+    private List<int> feeInSilverValues = [];
 
     public int globalGoodwillFeeInSilver;
 
-    private List<Map> maps = new List<Map>();
+    private List<Map> maps = [];
 
-    public Dictionary<Map, int> nextAirstrikeMinTick = new Dictionary<Map, int>();
+    public Dictionary<Map, int> nextAirstrikeMinTick = new();
 
-    private List<int> nextAirstrikeMinTickValues = new List<int>();
+    private List<int> nextAirstrikeMinTickValues = [];
 
-    public Dictionary<Map, int> nextMedicalSupplyMinTick = new Dictionary<Map, int>();
+    public Dictionary<Map, int> nextMedicalSupplyMinTick = new();
 
-    private List<int> nextMedicalSupplyMinTickValues = new List<int>();
+    private List<int> nextMedicalSupplyMinTickValues = [];
 
-    public Dictionary<Map, int> nextPeriodicSupplyTick = new Dictionary<Map, int>();
+    public Dictionary<Map, int> nextPeriodicSupplyTick = new();
 
-    private List<int> nextPeriodicSupplyTickValues = new List<int>();
+    private List<int> nextPeriodicSupplyTickValues = [];
 
-    public Dictionary<Map, int> nextRequestedSupplyMinTick = new Dictionary<Map, int>();
+    public Dictionary<Map, int> nextRequestedSupplyMinTick = new();
 
-    private List<int> nextRequestedSupplyMinTickValues = new List<int>();
+    private List<int> nextRequestedSupplyMinTickValues = [];
 
     public override void ExposeData()
     {
@@ -38,11 +38,11 @@ public class WorldComponent_Partnership(World world) : WorldComponent(world)
         Scribe_Values.Look(ref globalGoodwillFeeInSilver, "globalGoodwillFeeInSilver");
         if (Scribe.mode == LoadSaveMode.Saving)
         {
-            CleanNullMap(ref feeInSilver);
-            CleanNullMap(ref nextPeriodicSupplyTick);
-            CleanNullMap(ref nextRequestedSupplyMinTick);
-            CleanNullMap(ref nextMedicalSupplyMinTick);
-            CleanNullMap(ref nextAirstrikeMinTick);
+            cleanNullMap(ref feeInSilver);
+            cleanNullMap(ref nextPeriodicSupplyTick);
+            cleanNullMap(ref nextRequestedSupplyMinTick);
+            cleanNullMap(ref nextMedicalSupplyMinTick);
+            cleanNullMap(ref nextAirstrikeMinTick);
             maps.Clear();
             feeInSilverValues.Clear();
             nextPeriodicSupplyTickValues.Clear();
@@ -86,7 +86,7 @@ public class WorldComponent_Partnership(World world) : WorldComponent(world)
         }
     }
 
-    public void CleanNullMap(ref Dictionary<Map, int> dictionary)
+    private static void cleanNullMap(ref Dictionary<Map, int> dictionary)
     {
         var dictionary2 = new Dictionary<Map, int>();
         foreach (var key in dictionary.Keys)
@@ -102,41 +102,26 @@ public class WorldComponent_Partnership(World world) : WorldComponent(world)
 
     public void InitializeFeeIfNeeded(Map map)
     {
-        if (!feeInSilver.ContainsKey(map))
-        {
-            feeInSilver.Add(map, feeInitialCostInSilver);
-        }
+        feeInSilver.TryAdd(map, feeInitialCostInSilver);
     }
 
     public void InitializePeriodicSupplyTickIfNeeded(Map map)
     {
-        if (!nextPeriodicSupplyTick.ContainsKey(map))
-        {
-            nextPeriodicSupplyTick.Add(map, 0);
-        }
+        nextPeriodicSupplyTick.TryAdd(map, 0);
     }
 
     public void InitializeRequestedSupplyTickIfNeeded(Map map)
     {
-        if (!nextRequestedSupplyMinTick.ContainsKey(map))
-        {
-            nextRequestedSupplyMinTick.Add(map, 0);
-        }
+        nextRequestedSupplyMinTick.TryAdd(map, 0);
     }
 
     public void InitializeMedicalSupplyTickIfNeeded(Map map)
     {
-        if (!nextMedicalSupplyMinTick.ContainsKey(map))
-        {
-            nextMedicalSupplyMinTick.Add(map, 0);
-        }
+        nextMedicalSupplyMinTick.TryAdd(map, 0);
     }
 
     public void InitializeAirstrikeTickIfNeeded(Map map)
     {
-        if (!nextAirstrikeMinTick.ContainsKey(map))
-        {
-            nextAirstrikeMinTick.Add(map, 0);
-        }
+        nextAirstrikeMinTick.TryAdd(map, 0);
     }
 }

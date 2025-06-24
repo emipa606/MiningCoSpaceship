@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: medic helmet -->
+  <Apparel_SimpleHelmetMedic.label>medic helmet</Apparel_SimpleHelmetMedic.label>
+  <!-- EN: A medic helmet which gives moderate protection against sharp attacks. Not effective against blunt weapons. -->
+  <Apparel_SimpleHelmetMedic.description>A medic helmet which gives moderate protection against sharp attacks. Not effective against blunt weapons.</Apparel_SimpleHelmetMedic.description>
+</LanguageData>

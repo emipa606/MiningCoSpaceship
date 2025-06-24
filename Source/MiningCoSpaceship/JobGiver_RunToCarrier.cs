@@ -16,7 +16,7 @@ public class JobGiver_RunToCarrier : JobGiver_Wander
     {
         var result = pawn.mindState.duty.focus.Cell;
         var carrier = (pawn.GetLord().CurLordToil as LordToil_EscortDownedPawn)?.Data.carrier;
-        if (carrier?.pather != null && carrier.pather.Moving && carrier.pather.curPath is { NodesLeftCount: > 15 })
+        if (carrier?.pather is { Moving: true, curPath.NodesLeftCount: > 15 })
         {
             result = carrier.pather.curPath.Peek(15);
         }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: spaceship -->
+  <Spaceship.label>spaceship</Spaceship.label>
+  <!-- EN: A spaceship used by MiningCo. to maintain a link between ground operations and the orbital station orbiting around the planet. -->
+  <Spaceship.description>A spaceship used by MiningCo. to maintain a link between ground operations and the orbital station orbiting around the planet.</Spaceship.description>
+  <!-- EN: cargo spaceship -->
+  <SpaceshipCargo.label>cargo spaceship</SpaceshipCargo.label>
+  <!-- EN: A spaceship used by MiningCo. to convey bulk resources and materials. -->
+  <SpaceshipCargo.description>A spaceship used by MiningCo. to convey bulk resources and materials.</SpaceshipCargo.description>
+  <!-- EN: damaged spaceship -->
+  <SpaceshipDamaged.label>damaged spaceship</SpaceshipDamaged.label>
+  <!-- EN: A spaceship used by MiningCo. in various missions.\nThis ship is damaged and need materials to begin repairs. -->
+  <SpaceshipDamaged.description>A spaceship used by MiningCo. in various missions.
+This ship is damaged and need materials to begin repairs.</SpaceshipDamaged.description>
+  <!-- EN: dispatcher spaceship -->
+  <SpaceshipDispatcherDrop.label>dispatcher spaceship</SpaceshipDispatcherDrop.label>
+  <!-- EN: A spaceship used by MiningCo. to transport and dispatch expedition teams. -->
+  <SpaceshipDispatcherDrop.description>A spaceship used by MiningCo. to transport and dispatch expedition teams.</SpaceshipDispatcherDrop.description>
+  <!-- EN: dispatcher spaceship -->
+  <SpaceshipDispatcherPick.label>dispatcher spaceship</SpaceshipDispatcherPick.label>
+  <!-- EN: A spaceship used by MiningCo. to transport and dispatch expedition teams. -->
+  <SpaceshipDispatcherPick.description>A spaceship used by MiningCo. to transport and dispatch expedition teams.</SpaceshipDispatcherPick.description>
+  <!-- EN: medical spaceship -->
+  <SpaceshipMedical.label>medical spaceship</SpaceshipMedical.label>
+  <!-- EN: A spaceship used by MiningCo. to assist ground operations. It provides medical assistance to nearby personnel. -->
+  <SpaceshipMedical.description>A spaceship used by MiningCo. to assist ground operations. It provides medical assistance to nearby personnel.</SpaceshipMedical.description>
+</LanguageData>

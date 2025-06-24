@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: spaceship -->
+  <FlyingSpaceshipTakingOff.label>spaceship</FlyingSpaceshipTakingOff.label>
+  <!-- EN: A spaceship used by MiningCo. to maintain a link between ground operations and the orbital station orbiting around the planet. -->
+  <FlyingSpaceshipTakingOff.description>A spaceship used by MiningCo. to maintain a link between ground operations and the orbital station orbiting around the planet.</FlyingSpaceshipTakingOff.description>
+</LanguageData>

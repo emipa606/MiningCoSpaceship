@@ -8,11 +8,11 @@ namespace Spaceship;
 
 public class JobDriver_UseOrbitalRelayConsole : JobDriver
 {
-    public readonly TargetIndex orbitalRelayConsoleIndex = TargetIndex.A;
+    private const TargetIndex OrbitalRelayConsoleIndex = TargetIndex.A;
 
-    public TimeSpeed previousTimeSpeed = TimeSpeed.Paused;
+    private TimeSpeed previousTimeSpeed = TimeSpeed.Paused;
 
-    public AirstrikeDef selectedStrikeDef;
+    private AirstrikeDef selectedStrikeDef;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -23,7 +23,7 @@ public class JobDriver_UseOrbitalRelayConsole : JobDriver
     {
         var orbitalRelay = TargetThingA as Building_OrbitalRelay;
         yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.InteractionCell)
-            .FailOn(() => orbitalRelay?.canUseConsoleNow == false);
+            .FailOn(() => orbitalRelay?.CanUseConsoleNow == false);
         yield return new Toil
         {
             initAction = delegate
@@ -39,11 +39,11 @@ public class JobDriver_UseOrbitalRelayConsole : JobDriver
             initAction = delegate
             {
                 var diaNode = new DiaNode("MCS.whatdoyouwant".Translate());
-                var cargoSupplyDiaOption = GetCargoSupplyDiaOption(orbitalRelay);
+                var cargoSupplyDiaOption = getCargoSupplyDiaOption();
                 diaNode.options.Add(cargoSupplyDiaOption);
-                var medicalSupplyDiaOption = GetMedicalSupplyDiaOption(orbitalRelay);
+                var medicalSupplyDiaOption = getMedicalSupplyDiaOption();
                 diaNode.options.Add(medicalSupplyDiaOption);
-                var airSupportDiaOption = GetAirSupportDiaOption(orbitalRelay, diaNode);
+                var airSupportDiaOption = getAirSupportDiaOption(diaNode);
                 diaNode.options.Add(airSupportDiaOption);
                 if (Util_Misc.Partnership.globalGoodwillFeeInSilver > 0 || Util_Misc.Partnership.feeInSilver[Map] > 0)
                 {
@@ -52,7 +52,7 @@ public class JobDriver_UseOrbitalRelayConsole : JobDriver
                         option.Disable("MCS.partnershipfeeunpaid".Translate());
                     }
 
-                    var feePaymentDiaOption = GetFeePaymentDiaOption(orbitalRelay);
+                    var feePaymentDiaOption = getFeePaymentDiaOption(orbitalRelay);
                     diaNode.options.Add(feePaymentDiaOption);
                 }
 
@@ -65,10 +65,10 @@ public class JobDriver_UseOrbitalRelayConsole : JobDriver
             },
             defaultCompleteMode = ToilCompleteMode.Instant
         };
-        yield return Toils_Reserve.Release(orbitalRelayConsoleIndex);
+        yield return Toils_Reserve.Release(OrbitalRelayConsoleIndex);
     }
 
-    public DiaOption GetCargoSupplyDiaOption(Building_OrbitalRelay orbitalRelay)
+    private DiaOption getCargoSupplyDiaOption()
     {
         var diaOption = new DiaOption("MCS.requestcargoship".Translate(Util_Spaceship.cargoSupplyCostInSilver));
         var landingPad = Util_LandingPad.GetBestAvailableLandingPad(Map);
@@ -105,7 +105,7 @@ public class JobDriver_UseOrbitalRelayConsole : JobDriver
         return diaOption;
     }
 
-    public DiaOption GetMedicalSupplyDiaOption(Building_OrbitalRelay orbitalRelay)
+    private DiaOption getMedicalSupplyDiaOption()
     {
         var diaOption = new DiaOption("MCS.requestmedicship".Translate(Util_Spaceship.medicalSupplyCostInSilver));
         var landingPad = Util_LandingPad.GetBestAvailableLandingPad(Map);
@@ -142,26 +142,26 @@ public class JobDriver_UseOrbitalRelayConsole : JobDriver
         return diaOption;
     }
 
-    public DiaOption GetAirSupportDiaOption(Building_OrbitalRelay orbitalRelay, DiaNode parentDiaNode)
+    private DiaOption getAirSupportDiaOption(DiaNode parentDiaNode)
     {
         var diaOption = new DiaOption("MCS.requestairsupport".Translate())
         {
             link = Find.TickManager.TicksGame < Util_Misc.Partnership.nextAirstrikeMinTick[Map]
-                ? GetAirSupporDeniedDiaNode(parentDiaNode)
-                : GetAirSupportGrantedDiaNode(parentDiaNode)
+                ? getAirSupportDeniedDiaNode(parentDiaNode)
+                : getAirSupportGrantedDiaNode(parentDiaNode)
         };
 
         return diaOption;
     }
 
-    public DiaNode GetAirSupportGrantedDiaNode(DiaNode parentDiaNode)
+    private DiaNode getAirSupportGrantedDiaNode(DiaNode parentDiaNode)
     {
         var diaNode = new DiaNode("MCS.airsupportrequestapproved".Translate());
         foreach (var item in DefDatabase<AirstrikeDef>.AllDefsListForReading)
         {
             var diaOption = new DiaOption("MCS.itemcost".Translate(item.LabelCap, item.costInSilver))
             {
-                link = GetAirstrikeDetailsDiaNode(diaNode, item)
+                link = getAirstrikeDetailsDiaNode(diaNode, item)
             };
             diaNode.options.Add(diaOption);
         }
@@ -174,7 +174,7 @@ public class JobDriver_UseOrbitalRelayConsole : JobDriver
         return diaNode;
     }
 
-    public DiaNode GetAirstrikeDetailsDiaNode(DiaNode parentNode, AirstrikeDef strikeDef)
+    private DiaNode getAirstrikeDetailsDiaNode(DiaNode parentNode, AirstrikeDef strikeDef)
     {
         var diaNode = new DiaNode("MCS.airstriketype".Translate(strikeDef.LabelCap, strikeDef.description,
             strikeDef.runsNumber, strikeDef.costInSilver));
@@ -185,7 +185,7 @@ public class JobDriver_UseOrbitalRelayConsole : JobDriver
                 previousTimeSpeed = Find.TickManager.CurTimeSpeed;
                 Find.TickManager.CurTimeSpeed = TimeSpeed.Paused;
                 selectedStrikeDef = strikeDef;
-                Util_Misc.SelectAirstrikeTarget(Map, SpawnAirstrikeBeacon);
+                Util_Misc.SelectAirstrikeTarget(Map, spawnAirstrikeBeacon);
             },
             resolveTree = true
         };
@@ -203,7 +203,7 @@ public class JobDriver_UseOrbitalRelayConsole : JobDriver
         return diaNode;
     }
 
-    public DiaNode GetAirSupporDeniedDiaNode(DiaNode parentDiaNode)
+    private static DiaNode getAirSupportDeniedDiaNode(DiaNode parentDiaNode)
     {
         var diaNode = new DiaNode("MCS.noairsupport".Translate());
         var diaOption = new DiaOption("MCS.ok".Translate())
@@ -219,7 +219,7 @@ public class JobDriver_UseOrbitalRelayConsole : JobDriver
         return diaNode;
     }
 
-    public void SpawnAirstrikeBeacon(LocalTargetInfo targetPosition)
+    private void spawnAirstrikeBeacon(LocalTargetInfo targetPosition)
     {
         TradeUtility.LaunchSilver(Map, selectedStrikeDef.costInSilver);
         var building_AirstrikeBeacon =
@@ -233,7 +233,7 @@ public class JobDriver_UseOrbitalRelayConsole : JobDriver
                                                           Mathf.RoundToInt(selectedStrikeDef.ammoResupplyDays * 60000f);
     }
 
-    public DiaOption GetFeePaymentDiaOption(Building_OrbitalRelay orbitalRelay)
+    private DiaOption getFeePaymentDiaOption(Building_OrbitalRelay orbitalRelay)
     {
         var feeCost = Util_Misc.Partnership.globalGoodwillFeeInSilver + Util_Misc.Partnership.feeInSilver[Map];
         var diaOption = new DiaOption("MCS.paypartnershipfee".Translate(feeCost))

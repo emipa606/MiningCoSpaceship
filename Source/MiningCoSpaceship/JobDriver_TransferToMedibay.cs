@@ -7,9 +7,9 @@ namespace Spaceship;
 
 public class JobDriver_TransferToMedibay : JobDriver
 {
-    public readonly TargetIndex downedPawnIndex = TargetIndex.A;
+    private const TargetIndex DownedPawnIndex = TargetIndex.A;
 
-    public readonly TargetIndex medicalSPaceshipCellIndex = TargetIndex.B;
+    private const TargetIndex MedicalSpaceshipCellIndex = TargetIndex.B;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -19,10 +19,10 @@ public class JobDriver_TransferToMedibay : JobDriver
     protected override IEnumerable<Toil> MakeNewToils()
     {
         var downedPawn = TargetThingA as Pawn;
-        yield return Toils_Goto.GotoCell(downedPawnIndex, PathEndMode.OnCell)
+        yield return Toils_Goto.GotoCell(DownedPawnIndex, PathEndMode.OnCell)
             .FailOn(() => downedPawn.DestroyedOrNull() || downedPawn?.Downed == false);
-        yield return Toils_Haul.StartCarryThing(downedPawnIndex);
-        yield return Toils_Haul.CarryHauledThingToCell(medicalSPaceshipCellIndex).FailOn(() =>
+        yield return Toils_Haul.StartCarryThing(DownedPawnIndex);
+        yield return Toils_Haul.CarryHauledThingToCell(MedicalSpaceshipCellIndex).FailOn(() =>
             pawn.carryTracker.CarriedThing.DestroyedOrNull() ||
             !pawn.CanReach(pawn.jobs.curJob.targetB.Cell, PathEndMode.OnCell, Danger.Some));
         yield return new Toil
@@ -32,12 +32,12 @@ public class JobDriver_TransferToMedibay : JobDriver
                 pawn.carryTracker.TryDropCarriedThing(pawn.Position, ThingPlaceMode.Near, out var resultingThing);
                 if (pawn.Position.GetFirstThing(pawn.Map, Util_Spaceship.SpaceshipMedical) is not
                     Building_SpaceshipMedical
-                    building_SpaceshipMedical)
+                    buildingSpaceshipMedical)
                 {
                     return;
                 }
 
-                if (building_SpaceshipMedical.orbitalHealingPawnsAboardCount >= 6)
+                if (buildingSpaceshipMedical.orbitalHealingPawnsAboardCount >= 6)
                 {
                     Messages.Message("MCS.cannotboardmedic".Translate((resultingThing as Pawn)?.Name.ToStringShort),
                         resultingThing, MessageTypeDefOf.RejectInput);
@@ -45,7 +45,7 @@ public class JobDriver_TransferToMedibay : JobDriver
                 else if (TradeUtility.ColonyHasEnoughSilver(pawn.Map, Util_Spaceship.medicalSupplyCostInSilver))
                 {
                     TradeUtility.LaunchSilver(pawn.Map, Util_Spaceship.medicalSupplyCostInSilver);
-                    building_SpaceshipMedical.Notify_PawnBoarding(resultingThing as Pawn, false);
+                    buildingSpaceshipMedical.Notify_PawnBoarding(resultingThing as Pawn, false);
                 }
                 else
                 {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: boarding TargetA -->
+  <JobDef_BoardMedicalSpaceship.reportString>boarding TargetA</JobDef_BoardMedicalSpaceship.reportString>
+  <!-- EN: boarding TargetA -->
+  <JobDef_BoardSpaceship.reportString>boarding TargetA</JobDef_BoardSpaceship.reportString>
+  <!-- EN: rescuing TargetA -->
+  <JobDef_CarryDownedPawn.reportString>rescuing TargetA</JobDef_CarryDownedPawn.reportString>
+  <!-- EN: trading with TargetA -->
+  <JobDef_TradeWithCargoSpaceship.reportString>trading with TargetA</JobDef_TradeWithCargoSpaceship.reportString>
+  <!-- EN: transferring TargetA to medibay -->
+  <JobDef_TransferToMedibay.reportString>transferring TargetA to medibay</JobDef_TransferToMedibay.reportString>
+  <!-- EN: using TargetA -->
+  <JobDef_UseOrbitalRelayConsole.reportString>using TargetA</JobDef_UseOrbitalRelayConsole.reportString>
+</LanguageData>

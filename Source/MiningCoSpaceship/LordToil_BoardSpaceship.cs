@@ -15,17 +15,17 @@ public class LordToil_BoardSpaceship : LordToil
 
     public override bool AllowSatisfyLongNeeds => false;
 
-    protected LordToilData_BoardSpaceship Data => (LordToilData_BoardSpaceship)data;
+    private LordToilData_BoardSpaceship Data => (LordToilData_BoardSpaceship)data;
 
     public override void UpdateAllDuties()
     {
-        var lordToilData_BoardSpaceship = Data;
+        var lordToilDataBoardSpaceship = Data;
         foreach (var pawn in lord.ownedPawns)
         {
             var pawnDuty = new PawnDuty(Util_DutyDefOf.DutyDef_BoardSpaceship)
             {
-                locomotion = lordToilData_BoardSpaceship.locomotion,
-                focus = lordToilData_BoardSpaceship.boardCell
+                locomotion = lordToilDataBoardSpaceship.locomotion,
+                focus = lordToilDataBoardSpaceship.boardCell
             };
             pawn.mindState.duty = pawnDuty;
         }

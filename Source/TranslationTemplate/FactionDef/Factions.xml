@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: MiningCo. -->
+  <MiningCo.label>MiningCo.</MiningCo.label>
+  <!-- EN: MiningCo. is the most famous deep-space mining company through the galaxy. Though the company is officially only interested in acquiring rare minerals, its private army is never far away when locals or competitor firms threat its assets. -->
+  <MiningCo.description>MiningCo. is the most famous deep-space mining company through the galaxy. Though the company is officially only interested in acquiring rare minerals, its private army is never far away when locals or competitor firms threat its assets.</MiningCo.description>
+  <!-- EN: MiningCo. -->
+  <MiningCo.fixedName>MiningCo.</MiningCo.fixedName>
+  <!-- EN: planetary commander -->
+  <MiningCo.leaderTitle>planetary commander</MiningCo.leaderTitle>
+  <!-- EN: member -->
+  <MiningCo.pawnSingular>member</MiningCo.pawnSingular>
+  <!-- EN: miners -->
+  <MiningCo.pawnsPlural>miners</MiningCo.pawnsPlural>
+</LanguageData>

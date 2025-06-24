@@ -7,19 +7,20 @@ namespace Spaceship;
 
 public abstract class LordJob_MiningCoBase : LordJob
 {
-    public const int pawnExitedGoodwillImpact = 1;
+    private const int PawnExitedGoodwillImpact = 1;
 
-    public const int pawnLostGoodwillImpact = -3;
+    private const int PawnLostGoodwillImpact = -3;
 
-    public LocomotionUrgency locomotionUrgency;
+    protected LocomotionUrgency locomotionUrgency;
 
     public IntVec3 targetDestination;
 
-    public LordJob_MiningCoBase()
+    protected LordJob_MiningCoBase()
     {
     }
 
-    public LordJob_MiningCoBase(IntVec3 targetDestination, LocomotionUrgency locomotionUrgency = LocomotionUrgency.Walk)
+    protected LordJob_MiningCoBase(IntVec3 targetDestination,
+        LocomotionUrgency locomotionUrgency = LocomotionUrgency.Walk)
     {
         this.targetDestination = targetDestination;
         this.locomotionUrgency = locomotionUrgency;
@@ -43,13 +44,13 @@ public abstract class LordJob_MiningCoBase : LordJob
         switch (condition)
         {
             case PawnLostCondition.Incapped:
-                Messages.Message("MCS.employeelost".Translate(pawnLostGoodwillImpact),
+                Messages.Message("MCS.employeelost".Translate(PawnLostGoodwillImpact),
                     new TargetInfo(p.Position, Map), MessageTypeDefOf.NegativeHealthEvent);
-                Util_Faction.AffectGoodwillWith(Util_Faction.MiningCoFaction, Faction.OfPlayer, pawnLostGoodwillImpact);
+                Util_Faction.AffectGoodwillWith(Util_Faction.MiningCoFaction, Faction.OfPlayer, PawnLostGoodwillImpact);
                 break;
             case PawnLostCondition.ChangedFaction:
                 Util_Faction.AffectGoodwillWith(Util_Faction.MiningCoFaction, Faction.OfPlayer,
-                    pawnExitedGoodwillImpact);
+                    PawnExitedGoodwillImpact);
                 break;
         }
     }

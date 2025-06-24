@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: damaged spaceship -->
+  <Spaceship_DamagedSpaceship.label>damaged spaceship</Spaceship_DamagedSpaceship.label>
+  <!-- EN: dispatcher drop -->
+  <Spaceship_DispatcherDrop.label>dispatcher drop</Spaceship_DispatcherDrop.label>
+  <!-- EN: dispatcher pick -->
+  <Spaceship_DispatcherPick.label>dispatcher pick</Spaceship_DispatcherPick.label>
+</LanguageData>

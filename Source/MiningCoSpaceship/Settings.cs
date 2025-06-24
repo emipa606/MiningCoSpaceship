@@ -5,31 +5,31 @@ namespace Spaceship;
 
 public class Settings : ModSettings
 {
-    public static bool landingPadLightIsEnabled = true;
+    public static bool LandingPadLightIsEnabled = true;
 
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_Values.Look(ref landingPadLightIsEnabled, "landingPadLightIsEnabled", true);
+        Scribe_Values.Look(ref LandingPadLightIsEnabled, "landingPadLightIsEnabled", true);
     }
 
     public static void DoSettingsWindowContents(Rect inRect)
     {
-        var listing_Standard = new Listing_Standard
+        var listingStandard = new Listing_Standard
         {
             ColumnWidth = inRect.width
         };
-        listing_Standard.Begin(inRect);
-        listing_Standard.CheckboxLabeled("MCS.enablelights".Translate(), ref landingPadLightIsEnabled,
+        listingStandard.Begin(inRect);
+        listingStandard.CheckboxLabeled("MCS.enablelights".Translate(), ref LandingPadLightIsEnabled,
             "MCS.enablelightsTT".Translate());
-        if (Controller.currentVersion != null)
+        if (Controller.CurrentVersion != null)
         {
-            listing_Standard.Gap();
+            listingStandard.Gap();
             GUI.contentColor = Color.gray;
-            listing_Standard.Label("MCS.CurrentModVersion".Translate(Controller.currentVersion));
+            listingStandard.Label("MCS.CurrentModVersion".Translate(Controller.CurrentVersion));
             GUI.contentColor = Color.white;
         }
 
-        listing_Standard.End();
+        listingStandard.End();
     }
 }

@@ -5,22 +5,22 @@ namespace Spaceship;
 
 public class Trigger_SpaceshipNotFound : Trigger
 {
-    public const int checkInterval = 64;
+    private const int CheckInterval = 64;
 
     public override bool ActivateOn(Lord lord, TriggerSignal signal)
     {
-        if (signal.type != TriggerSignalType.Tick || Find.TickManager.TicksGame % checkInterval != 0)
+        if (signal.type != TriggerSignalType.Tick || Find.TickManager.TicksGame % CheckInterval != 0)
         {
             return false;
         }
 
-        var thinglist = (lord.LordJob as LordJob_MiningCoBase)?.targetDestination.GetThingList(lord.Map);
-        if (thinglist == null)
+        var thingList = (lord.LordJob as LordJob_MiningCoBase)?.targetDestination.GetThingList(lord.Map);
+        if (thingList == null)
         {
             return true;
         }
 
-        foreach (var thing in thinglist)
+        foreach (var thing in thingList)
         {
             if (thing is Building_Spaceship)
             {

@@ -5,11 +5,11 @@ namespace Spaceship;
 
 public class Trigger_MedicalSpaceshipTakeOffImminent : Trigger
 {
-    public const int checkInterval = 305;
+    private const int CheckInterval = 305;
 
     public override bool ActivateOn(Lord lord, TriggerSignal signal)
     {
-        if (signal.type != TriggerSignalType.Tick || Find.TickManager.TicksGame % checkInterval != 0)
+        if (signal.type != TriggerSignalType.Tick || Find.TickManager.TicksGame % CheckInterval != 0)
         {
             return false;
         }

@@ -9,24 +9,24 @@ namespace Spaceship;
 [StaticConstructorOnStartup]
 public class FlyingSpaceshipAirstrike : FlyingSpaceship
 {
-    public static readonly SoundDef airStrikeSound = SoundDef.Named("Airstrike");
+    private static readonly SoundDef airStrikeSound = SoundDef.Named("Airstrike");
 
-    public readonly List<bool> weaponShootRight = [true, true, true];
+    private readonly List<bool> weaponShootRight = [true, true, true];
 
-    public AirstrikeDef airStrikeDef;
+    private AirstrikeDef airStrikeDef;
 
     private Faction clientFaction;
 
-    public float shipToTargetDistance;
+    private float shipToTargetDistance;
 
-    public IntVec3 targetPosition = IntVec3.Invalid;
+    private IntVec3 targetPosition = IntVec3.Invalid;
 
-    public int ticksAfterOverflight;
-    public int ticksBeforeOverflight;
+    private int ticksAfterOverflight;
+    private int ticksBeforeOverflight;
 
-    public List<int> weaponNextShotTick = [0, 0, 0];
+    private List<int> weaponNextShotTick = [0, 0, 0];
 
-    public List<int> weaponRemainingRounds = [-1, -1, -1];
+    private List<int> weaponRemainingRounds = [-1, -1, -1];
 
     public void InitializeAirstrikeData(IntVec3 position, AirstrikeDef strikeDef, Faction faction)
     {
@@ -36,12 +36,12 @@ public class FlyingSpaceshipAirstrike : FlyingSpaceship
         ticksBeforeOverflight = airStrikeDef.ticksBeforeOverflightInitialValue;
         ticksAfterOverflight = 0;
         spaceshipKind = SpaceshipKind.Airstrike;
-        ComputeAirstrikeRotation(targetPosition);
+        computeAirstrikeRotation(targetPosition);
         ConfigureShipTexture(spaceshipKind);
         base.Tick();
     }
 
-    public void ComputeAirstrikeRotation(IntVec3 position)
+    private void computeAirstrikeRotation(IntVec3 position)
     {
         var num = Map.Size.x / 2;
         var num2 = Map.Size.z / 2;
@@ -85,7 +85,7 @@ public class FlyingSpaceshipAirstrike : FlyingSpaceship
         Scribe_Collections.Look(ref weaponNextShotTick, "weaponNextShotTick");
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         if (ticksBeforeOverflight == airStrikeDef.ticksBeforeOverflightPlaySound)
@@ -95,7 +95,7 @@ public class FlyingSpaceshipAirstrike : FlyingSpaceship
 
         for (var i = 0; i < airStrikeDef.weapons.Count; i++)
         {
-            WeaponTick(i, airStrikeDef.weapons[i]);
+            weaponTick(i, airStrikeDef.weapons[i]);
         }
 
         if (ticksBeforeOverflight > 0)
@@ -112,7 +112,7 @@ public class FlyingSpaceshipAirstrike : FlyingSpaceship
         }
     }
 
-    public override void ComputeShipExactPosition()
+    protected override void ComputeShipExactPosition()
     {
         var vector = new Vector3(0f, 0f, 1f).RotatedBy(spaceshipExactRotation);
         spaceshipExactPosition = targetPosition.ToVector3ShiftedWithAltitude(def.altitudeLayer);
@@ -148,27 +148,27 @@ public class FlyingSpaceshipAirstrike : FlyingSpaceship
         }
     }
 
-    public override void ComputeShipShadowExactPosition()
+    protected override void ComputeShipShadowExactPosition()
     {
         var lightSourceInfo = GenCelestial.GetLightSourceInfo(Map, GenCelestial.LightType.Shadow);
         spaceshipShadowExactPosition = spaceshipExactPosition +
                                        (2f * new Vector3(lightSourceInfo.vector.x, -0.01f, lightSourceInfo.vector.y));
     }
 
-    public override void ComputeShipExactRotation()
+    protected override void ComputeShipExactRotation()
     {
     }
 
-    public override void ComputeShipScale()
+    protected override void ComputeShipScale()
     {
     }
 
-    public override void SetShipPositionToBeSelectable()
+    protected override void SetShipPositionToBeSelectable()
     {
         Position = IsInBounds() ? spaceshipExactPosition.ToIntVec3() : targetPosition;
     }
 
-    public void WeaponTick(int weaponIndex, WeaponDef weaponDef)
+    private void weaponTick(int weaponIndex, WeaponDef weaponDef)
     {
         if (weaponDef.ammoDef != null && weaponRemainingRounds[weaponIndex] == -1 &&
             shipToTargetDistance <= weaponDef.startShootingDistance)
@@ -210,7 +210,7 @@ public class FlyingSpaceshipAirstrike : FlyingSpaceship
             Pawn pawn = null;
             if (weaponDef.targetAcquireRange > 0f)
             {
-                pawn = GetRandomeHostilePawnAround(vector2, weaponDef.targetAcquireRange);
+                pawn = getRandomHostilePawnAround(vector2, weaponDef.targetAcquireRange);
             }
 
             if (pawn != null)
@@ -230,7 +230,7 @@ public class FlyingSpaceshipAirstrike : FlyingSpaceship
         weaponShootRight[weaponIndex] = !weaponShootRight[weaponIndex];
     }
 
-    public Pawn GetRandomeHostilePawnAround(Vector3 center, float radius)
+    private Pawn getRandomHostilePawnAround(Vector3 center, float radius)
     {
         var list = new List<Pawn>();
         foreach (var item in GenRadial.RadialCellsAround(center.ToIntVec3(), radius, true))

@@ -9,7 +9,7 @@ namespace Spaceship;
 
 public class Building_SpaceshipCargo : Building_Spaceship, ITrader
 {
-    public override bool takeOffRequestIsEnabled => true;
+    protected override bool takeOffRequestIsEnabled => true;
 
     public TradeCurrency TradeCurrency => TradeCurrency.Silver;
 
@@ -112,7 +112,7 @@ public class Building_SpaceshipCargo : Building_Spaceship, ITrader
         var list = new List<FloatMenuOption>();
         if (!selPawn.CanReach(this, PathEndMode.ClosestTouch, Danger.Some))
         {
-            return GetFloatMenuOptionsCannotReach(selPawn);
+            return GetFloatMenuOptionsCannotReach();
         }
 
         foreach (var floatMenuOption in base.GetFloatMenuOptions(selPawn))

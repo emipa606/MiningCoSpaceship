@@ -10,15 +10,15 @@ public class FlyingSpaceshipTakingOff : FlyingSpaceship
 {
     public const int horizontalTrajectoryDurationInTicks = 480;
 
-    public const float verticalTrajectoryDurationInTicks = 240;
+    private const float VerticalTrajectoryDurationInTicks = 240;
 
-    public static readonly SoundDef takingOffSound = SoundDef.Named("SpaceshipTakingOff");
+    private static readonly SoundDef takingOffSound = SoundDef.Named("SpaceshipTakingOff");
 
-    public IntVec3 landingPadPosition = IntVec3.Invalid;
+    private IntVec3 landingPadPosition = IntVec3.Invalid;
 
-    public Rot4 landingPadRotation = Rot4.North;
+    private Rot4 landingPadRotation = Rot4.North;
 
-    public int ticksSinceTakeOff;
+    private int ticksSinceTakeOff;
 
     public void InitializeTakingOffParameters(IntVec3 position, Rot4 rotation, SpaceshipKind kind)
     {
@@ -38,15 +38,15 @@ public class FlyingSpaceshipTakingOff : FlyingSpaceship
         Scribe_Values.Look(ref landingPadRotation, "landingPadRotation");
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         ticksSinceTakeOff++;
-        if (ticksSinceTakeOff <= verticalTrajectoryDurationInTicks)
+        if (ticksSinceTakeOff <= VerticalTrajectoryDurationInTicks)
         {
             FleckMaker.ThrowDustPuff(
                 GenAdj.CellsAdjacentCardinal(landingPadPosition, landingPadRotation, Util_ThingDefOf.LandingPad.Size)
-                    .RandomElement(), Map, 3f * (1f - (ticksSinceTakeOff / verticalTrajectoryDurationInTicks)));
+                    .RandomElement(), Map, 3f * (1f - (ticksSinceTakeOff / VerticalTrajectoryDurationInTicks)));
         }
 
         if (ticksSinceTakeOff == 1)
@@ -60,7 +60,7 @@ public class FlyingSpaceshipTakingOff : FlyingSpaceship
         }
     }
 
-    public override void ComputeShipExactPosition()
+    protected override void ComputeShipExactPosition()
     {
         var vector = landingPadPosition.ToVector3ShiftedWithAltitude(def.altitudeLayer.AltitudeFor());
         if (spaceshipKind != SpaceshipKind.Medical)
@@ -68,9 +68,9 @@ public class FlyingSpaceshipTakingOff : FlyingSpaceship
             vector += new Vector3(0f, 0f, 0.5f).RotatedBy(landingPadRotation.AsAngle);
         }
 
-        if (ticksSinceTakeOff >= verticalTrajectoryDurationInTicks)
+        if (ticksSinceTakeOff >= VerticalTrajectoryDurationInTicks)
         {
-            var num = ticksSinceTakeOff - verticalTrajectoryDurationInTicks;
+            var num = ticksSinceTakeOff - VerticalTrajectoryDurationInTicks;
             var z = num * num * 0.001f * 0.8f;
             vector += new Vector3(0f, 0f, z).RotatedBy(spaceshipExactRotation);
         }
@@ -78,38 +78,38 @@ public class FlyingSpaceshipTakingOff : FlyingSpaceship
         spaceshipExactPosition = vector;
     }
 
-    public override void ComputeShipShadowExactPosition()
+    protected override void ComputeShipShadowExactPosition()
     {
         spaceshipShadowExactPosition = spaceshipExactPosition;
         var num = 2f;
-        if (ticksSinceTakeOff < verticalTrajectoryDurationInTicks)
+        if (ticksSinceTakeOff < VerticalTrajectoryDurationInTicks)
         {
-            num *= ticksSinceTakeOff / verticalTrajectoryDurationInTicks;
+            num *= ticksSinceTakeOff / VerticalTrajectoryDurationInTicks;
         }
 
         var lightSourceInfo = GenCelestial.GetLightSourceInfo(Map, GenCelestial.LightType.Shadow);
         spaceshipShadowExactPosition += new Vector3(lightSourceInfo.vector.x, -0.1f, lightSourceInfo.vector.y) * num;
     }
 
-    public override void ComputeShipExactRotation()
+    protected override void ComputeShipExactRotation()
     {
     }
 
-    public override void ComputeShipScale()
+    protected override void ComputeShipScale()
     {
         var num = 1.2f;
         var num2 = 0.8f;
-        if (ticksSinceTakeOff < verticalTrajectoryDurationInTicks)
+        if (ticksSinceTakeOff < VerticalTrajectoryDurationInTicks)
         {
-            num = 1f + (0.2f * (ticksSinceTakeOff / verticalTrajectoryDurationInTicks));
-            num2 = 1f - (0.2f * (ticksSinceTakeOff / verticalTrajectoryDurationInTicks));
+            num = 1f + (0.2f * (ticksSinceTakeOff / VerticalTrajectoryDurationInTicks));
+            num2 = 1f - (0.2f * (ticksSinceTakeOff / VerticalTrajectoryDurationInTicks));
         }
 
         spaceshipScale = baseSpaceshipScale * num;
         spaceshipShadowScale = baseSpaceshipScale * num2;
     }
 
-    public override void SetShipPositionToBeSelectable()
+    protected override void SetShipPositionToBeSelectable()
     {
         Position = IsInBounds() ? spaceshipExactPosition.ToIntVec3() : landingPadPosition;
     }

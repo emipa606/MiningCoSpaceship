@@ -7,10 +7,10 @@ namespace Spaceship;
 
 public class Building_SpaceshipDispatcherDrop : Building_SpaceshipDispatcher
 {
-    public int teamDropTick;
-    public bool teamIsDropped;
+    private int teamDropTick;
+    private bool teamIsDropped;
 
-    public override bool takeOffRequestIsEnabled => false;
+    protected override bool takeOffRequestIsEnabled => false;
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
@@ -35,7 +35,7 @@ public class Building_SpaceshipDispatcherDrop : Building_SpaceshipDispatcher
         Scribe_Values.Look(ref teamDropTick, "teamDropTick");
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         if (teamIsDropped || Find.TickManager.TicksGame < teamDropTick ||
@@ -44,12 +44,12 @@ public class Building_SpaceshipDispatcherDrop : Building_SpaceshipDispatcher
             return;
         }
 
-        DropTeam();
+        dropTeam();
         teamIsDropped = true;
         takeOffTick = Find.TickManager.TicksGame + 600;
     }
 
-    public void DropTeam()
+    private void dropTeam()
     {
         if (!Expedition.TryFindRandomExitSpot(Map, Position, out var exitSpot))
         {

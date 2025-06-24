@@ -38,17 +38,17 @@ public class WorkGiver_TransferToMedibay : WorkGiver_Scanner
             return false;
         }
 
-        if (!Util_Misc.OrbitalHealing.HasAnyTreatableHediff(pawn2))
+        if (!WorldComponent_OrbitalHealing.HasAnyTreatableHediff(pawn2))
         {
             return false;
         }
 
         foreach (var item in pawn.Map.listerThings.ThingsOfDef(Util_Spaceship.SpaceshipMedical))
         {
-            if (item is Building_SpaceshipMedical building_SpaceshipMedical && pawn2.Downed &&
+            if (item is Building_SpaceshipMedical buildingSpaceshipMedical && pawn2.Downed &&
                 pawn.CanReserveAndReach(pawn2, PathEndMode, Danger.Deadly, 1, -1, null, true) &&
                 pawn.CanReach(item, PathEndMode, Danger.Deadly) &&
-                building_SpaceshipMedical.orbitalHealingPawnsAboardCount < 6 &&
+                buildingSpaceshipMedical.orbitalHealingPawnsAboardCount < 6 &&
                 TradeUtility.ColonyHasEnoughSilver(pawn.Map, Util_Spaceship.medicalSupplyCostInSilver))
             {
                 return true;
@@ -61,7 +61,7 @@ public class WorkGiver_TransferToMedibay : WorkGiver_Scanner
     public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
         var num = 99999f;
-        Building_SpaceshipMedical building_SpaceshipMedical = null;
+        Building_SpaceshipMedical buildingSpaceshipMedical = null;
         foreach (var item in pawn.Map.listerThings.ThingsOfDef(Util_Spaceship.SpaceshipMedical))
         {
             var num2 = t.Position.DistanceTo(item.Position);
@@ -71,10 +71,10 @@ public class WorkGiver_TransferToMedibay : WorkGiver_Scanner
             }
 
             num = num2;
-            building_SpaceshipMedical = item as Building_SpaceshipMedical;
+            buildingSpaceshipMedical = item as Building_SpaceshipMedical;
         }
 
-        var job = JobMaker.MakeJob(Util_JobDefOf.JobDef_TransferToMedibay, t, building_SpaceshipMedical);
+        var job = JobMaker.MakeJob(Util_JobDefOf.JobDef_TransferToMedibay, t, buildingSpaceshipMedical);
         job.count = 1;
         return job;
     }

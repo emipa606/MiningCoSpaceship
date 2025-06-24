@@ -7,7 +7,7 @@ namespace Spaceship;
 
 public class JobDriver_BoardMedicalSpaceship : JobDriver
 {
-    public readonly TargetIndex medicalSpaceshipIndex = TargetIndex.A;
+    private readonly TargetIndex medicalSpaceshipIndex = TargetIndex.A;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {

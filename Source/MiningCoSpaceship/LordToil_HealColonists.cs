@@ -12,7 +12,7 @@ public class LordToil_HealColonists : LordToil
         Data.spaceshipPosition = spaceshipPosition;
     }
 
-    public LordToilData_HealColonists Data => (LordToilData_HealColonists)data;
+    private LordToilData_HealColonists Data => (LordToilData_HealColonists)data;
 
     public override bool AllowSatisfyLongNeeds => false;
 

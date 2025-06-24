@@ -9,14 +9,14 @@ namespace Spaceship;
 
 public class Building_AirstrikeBeacon : Building
 {
-    public const int ticksBetweenRuns = 900;
+    private const int TicksBetweenRuns = 900;
 
-    public const int fireStartCheckPeriodInTicks = 60;
-    public AirstrikeDef airStrikeDef;
+    private const int FireStartCheckPeriodInTicks = 60;
+    private AirstrikeDef airStrikeDef;
 
-    public int nextStrikeTick;
+    private int nextStrikeTick;
 
-    public int remainingRuns;
+    private int remainingRuns;
 
     public void InitializeAirstrike(IntVec3 targetPosition, AirstrikeDef airStrikeDef)
     {
@@ -24,7 +24,7 @@ public class Building_AirstrikeBeacon : Building
         this.airStrikeDef = airStrikeDef;
         remainingRuns = this.airStrikeDef.runsNumber;
         nextStrikeTick = Find.TickManager.TicksGame + 900;
-        GetComp<CompOrbitalBeam>().StartAnimation(remainingRuns * ticksBetweenRuns, 10, Rand.Range(-12f, 12f));
+        GetComp<CompOrbitalBeam>().StartAnimation(remainingRuns * TicksBetweenRuns, 10, Rand.Range(-12f, 12f));
     }
 
     public override void ExposeData()
@@ -35,10 +35,10 @@ public class Building_AirstrikeBeacon : Building
         Scribe_Values.Look(ref remainingRuns, "runNumber");
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
-        if (Find.TickManager.TicksGame % fireStartCheckPeriodInTicks == 0)
+        if (Find.TickManager.TicksGame % FireStartCheckPeriodInTicks == 0)
         {
             var c = (Position.ToVector3Shifted() + Gen.RandomHorizontalVector(1.5f)).ToIntVec3();
             if (c.InBounds(Map))
@@ -51,7 +51,7 @@ public class Building_AirstrikeBeacon : Building
         {
             Util_Spaceship.SpawnStrikeShip(Map, Position, airStrikeDef, Faction);
             remainingRuns--;
-            nextStrikeTick = Find.TickManager.TicksGame + ticksBetweenRuns;
+            nextStrikeTick = Find.TickManager.TicksGame + TicksBetweenRuns;
         }
 
         if (remainingRuns == 0)
@@ -76,31 +76,31 @@ public class Building_AirstrikeBeacon : Building
     public override IEnumerable<Gizmo> GetGizmos()
     {
         IList<Gizmo> list = new List<Gizmo>();
-        var num = 700000104;
-        var command_Action = new Command_Action
+        const int num = 700000104;
+        var commandAction = new Command_Action
         {
             icon = ContentFinder<Texture2D>.Get("UI/Commands/Attack"),
             defaultLabel = "MCS.setnewtarget".Translate(),
             defaultDesc = "MCS.setnewtargetTT".Translate(),
             activateSound = SoundDefOf.Click,
-            action = SelectNewAirstrikeTarget,
+            action = selectNewAirstrikeTarget,
             groupKey = num + 1
         };
-        list.Add(command_Action);
+        list.Add(commandAction);
         var gizmos = base.GetGizmos();
         return gizmos != null ? gizmos.Concat(list) : list;
     }
 
-    public void SelectNewAirstrikeTarget()
+    private void selectNewAirstrikeTarget()
     {
-        Util_Misc.SelectAirstrikeTarget(Map, SetNewAirstrikeTarget);
+        Util_Misc.SelectAirstrikeTarget(Map, setNewAirstrikeTarget);
     }
 
-    public void SetNewAirstrikeTarget(LocalTargetInfo targetPosition)
+    private void setNewAirstrikeTarget(LocalTargetInfo targetPosition)
     {
         Position = targetPosition.Cell;
-        nextStrikeTick = Find.TickManager.TicksGame + ticksBetweenRuns;
+        nextStrikeTick = Find.TickManager.TicksGame + TicksBetweenRuns;
         Messages.Message("MCS.newairstrikedesignated".Translate(), this, MessageTypeDefOf.CautionInput);
-        GetComp<CompOrbitalBeam>().StartAnimation(remainingRuns * ticksBetweenRuns, 10, Rand.Range(-12f, 12f));
+        GetComp<CompOrbitalBeam>().StartAnimation(remainingRuns * TicksBetweenRuns, 10, Rand.Range(-12f, 12f));
     }
 }

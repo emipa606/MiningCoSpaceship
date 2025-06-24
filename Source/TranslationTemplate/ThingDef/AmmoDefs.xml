@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: autocannon round -->
+  <AutocannonRound.label>autocannon round</AutocannonRound.label>
+  <!-- EN: gatling round -->
+  <GatlingRound.label>gatling round</GatlingRound.label>
+  <!-- EN: incendiary bomb -->
+  <IncendiaryBomb.label>incendiary bomb</IncendiaryBomb.label>
+  <!-- EN: rocket -->
+  <RocketAirstrike.label>rocket</RocketAirstrike.label>
+</LanguageData>

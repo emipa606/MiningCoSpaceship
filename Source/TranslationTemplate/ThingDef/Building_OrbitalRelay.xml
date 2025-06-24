@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: orbital relay -->
+  <OrbitalRelay.label>orbital relay</OrbitalRelay.label>
+  <!-- EN: This giant communication array is able to reach nearest MiningCo. ships and comms satellites orbiting around the planet. -->
+  <OrbitalRelay.description>This giant communication array is able to reach nearest MiningCo. ships and comms satellites orbiting around the planet.</OrbitalRelay.description>
+</LanguageData>

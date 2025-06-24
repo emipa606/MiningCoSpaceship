@@ -7,9 +7,9 @@ namespace Spaceship;
 
 public class JobDriver_CarryDownedPawn : JobDriver
 {
-    public readonly TargetIndex downedPawnIndex = TargetIndex.A;
+    private const TargetIndex DownedPawnIndex = TargetIndex.A;
 
-    public readonly TargetIndex travelDestCellIndex = TargetIndex.B;
+    private const TargetIndex TravelDestCellIndex = TargetIndex.B;
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
@@ -19,10 +19,10 @@ public class JobDriver_CarryDownedPawn : JobDriver
     protected override IEnumerable<Toil> MakeNewToils()
     {
         var downedPawn = TargetThingA as Pawn;
-        yield return Toils_Goto.GotoCell(downedPawnIndex, PathEndMode.OnCell)
+        yield return Toils_Goto.GotoCell(DownedPawnIndex, PathEndMode.OnCell)
             .FailOn(() => downedPawn.DestroyedOrNull() || downedPawn?.Downed == false);
-        yield return Toils_Haul.StartCarryThing(downedPawnIndex);
-        yield return Toils_Haul.CarryHauledThingToCell(travelDestCellIndex).FailOn(() =>
+        yield return Toils_Haul.StartCarryThing(DownedPawnIndex);
+        yield return Toils_Haul.CarryHauledThingToCell(TravelDestCellIndex).FailOn(() =>
             pawn.carryTracker.CarriedThing.DestroyedOrNull() ||
             !pawn.CanReach(pawn.jobs.curJob.targetB.Cell, PathEndMode.OnCell, Danger.Some));
         yield return new Toil

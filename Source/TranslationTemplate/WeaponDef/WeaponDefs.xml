@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: autocannon -->
+  <AutocannonWeapon.label>autocannon</AutocannonWeapon.label>
+  <!-- EN: gatling -->
+  <GatlingWeapon.label>gatling</GatlingWeapon.label>
+  <!-- EN: incendiary bomb -->
+  <IncendiaryBombWeapon.label>incendiary bomb</IncendiaryBombWeapon.label>
+  <!-- EN: rocket rack -->
+  <RocketWeapon.label>rocket rack</RocketWeapon.label>
+</LanguageData>

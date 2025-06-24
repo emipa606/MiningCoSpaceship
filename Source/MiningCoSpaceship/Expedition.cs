@@ -8,16 +8,7 @@ namespace Spaceship;
 
 public static class Expedition
 {
-    public enum ExpeditionKind
-    {
-        Geologists = 1,
-        Miners,
-        OutpostSettlers,
-        Scouts,
-        Troopers
-    }
-
-    public static readonly Dictionary<PawnKindDef, int> expeditionGeologist = new Dictionary<PawnKindDef, int>
+    private static readonly Dictionary<PawnKindDef, int> expeditionGeologist = new()
     {
         {
             Util_PawnKindDefOf.Geologist,
@@ -41,7 +32,7 @@ public static class Expedition
         }
     };
 
-    public static readonly Dictionary<PawnKindDef, int> expeditionMiners = new Dictionary<PawnKindDef, int>
+    private static readonly Dictionary<PawnKindDef, int> expeditionMiners = new()
     {
         {
             Util_PawnKindDefOf.Technician,
@@ -61,7 +52,7 @@ public static class Expedition
         }
     };
 
-    public static readonly Dictionary<PawnKindDef, int> expeditionOutpostSettlers = new Dictionary<PawnKindDef, int>
+    private static readonly Dictionary<PawnKindDef, int> expeditionOutpostSettlers = new()
     {
         {
             Util_PawnKindDefOf.Technician,
@@ -81,7 +72,7 @@ public static class Expedition
         }
     };
 
-    public static readonly Dictionary<PawnKindDef, int> expeditionScouts = new Dictionary<PawnKindDef, int>
+    private static readonly Dictionary<PawnKindDef, int> expeditionScouts = new()
     {
         {
             Util_PawnKindDefOf.Scout,
@@ -93,7 +84,7 @@ public static class Expedition
         }
     };
 
-    public static readonly Dictionary<PawnKindDef, int> expeditionTroopers = new Dictionary<PawnKindDef, int>
+    private static readonly Dictionary<PawnKindDef, int> expeditionTroopers = new()
     {
         {
             Util_PawnKindDefOf.Scout,
@@ -170,13 +161,13 @@ public static class Expedition
 
     public static bool TryFindRandomExitSpot(Map map, IntVec3 startSpot, out IntVec3 exitSpot)
     {
-        bool Validator(IntVec3 cell)
+        return CellFinder.TryFindRandomEdgeCellWith(validator, map, CellFinder.EdgeRoadChance_Always, out exitSpot);
+
+        bool validator(IntVec3 cell)
         {
             return !cell.Fogged(map) && !map.roofGrid.Roofed(cell) && cell.Standable(map) &&
                    map.reachability.CanReach(startSpot, cell, PathEndMode.Touch, TraverseMode.PassDoors, Danger.Some);
         }
-
-        return CellFinder.TryFindRandomEdgeCellWith(Validator, map, CellFinder.EdgeRoadChance_Always, out exitSpot);
     }
 
     public static void RandomlyDamagePawn(Pawn pawn, int injuriesNumber, int damageAmount)
@@ -206,5 +197,14 @@ public static class Expedition
             where x.depth == BodyPartDepth.Outside ||
                   x.depth == BodyPartDepth.Inside && x.def.IsSolid(x, bodyModel.hediffs)
             select x;
+    }
+
+    private enum ExpeditionKind
+    {
+        Geologists = 1,
+        Miners,
+        OutpostSettlers,
+        Scouts,
+        Troopers
     }
 }

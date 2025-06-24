@@ -11,47 +11,47 @@ namespace Spaceship;
 [StaticConstructorOnStartup]
 public class Building_OrbitalRelay : Building
 {
-    public const int spaceshipLandingCheckPeriodInTick = 60;
+    private const int SpaceshipLandingCheckPeriodInTick = 60;
 
-    public const float dishRotationPerTick = 0.06f;
+    private const float DishRotationPerTick = 0.06f;
 
-    public const int rotationIntervalMin = 1200;
+    private const int RotationIntervalMin = 1200;
 
-    public const int rotationIntervalMax = 2400;
+    private const int RotationIntervalMax = 2400;
 
-    public const int rotationDurationMin = 500;
+    private const int RotationDurationMin = 500;
 
-    public const int rotationDurationMax = 1500;
+    private const int RotationDurationMax = 1500;
 
-    public static readonly Material dishTexture = MaterialPool.MatFrom("Things/Building/OrbitalRelay/SatelliteDish");
+    private static readonly Material dishTexture = MaterialPool.MatFrom("Things/Building/OrbitalRelay/SatelliteDish");
 
-    public static Vector3 dishScale = new Vector3(5f, 0f, 5f);
+    private static readonly Vector3 dishScale = new(5f, 0f, 5f);
 
-    public bool clockwiseRotation = true;
+    private bool clockwiseRotation = true;
 
-    public Matrix4x4 dishMatrix;
+    private Matrix4x4 dishMatrix;
 
-    public float dishRotation;
+    private float dishRotation;
 
-    public bool landingPadIsAvailable;
+    private bool landingPadIsAvailable;
 
-    public int lastMedicalSupplyTick;
+    private int lastMedicalSupplyTick;
 
-    public int lastPeriodicSupplyTick;
+    private int lastPeriodicSupplyTick;
 
-    public int lastRequestedSupplyTick;
+    private int lastRequestedSupplyTick;
 
-    public int nextSpaceshipLandingCheckTick;
+    private int nextSpaceshipLandingCheckTick;
 
     public CompPowerTrader powerComp;
 
-    public Sustainer rotationSoundSustainer;
+    private Sustainer rotationSoundSustainer;
 
-    public int ticksToNextRotation = 1200;
+    private int ticksToNextRotation = 1200;
 
-    public int ticksToRotationEnd;
+    private int ticksToRotationEnd;
 
-    public bool canUseConsoleNow =>
+    public bool CanUseConsoleNow =>
         !Map.gameConditionManager.ConditionIsActive(Util_GameConditionDefOf.SolarFlare) && powerComp.PowerOn;
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
@@ -81,7 +81,7 @@ public class Building_OrbitalRelay : Building
 
     public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
     {
-        StopRotationSound();
+        stopRotationSound();
         base.Destroy(mode);
     }
 
@@ -99,18 +99,18 @@ public class Building_OrbitalRelay : Building
         Scribe_Values.Look(ref ticksToRotationEnd, "ticksToRotationEnd");
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         if (!powerComp.PowerOn)
         {
-            StopRotationSound();
+            stopRotationSound();
             return;
         }
 
         if (Find.TickManager.TicksGame >= nextSpaceshipLandingCheckTick)
         {
-            nextSpaceshipLandingCheckTick = Find.TickManager.TicksGame + spaceshipLandingCheckPeriodInTick;
+            nextSpaceshipLandingCheckTick = Find.TickManager.TicksGame + SpaceshipLandingCheckPeriodInTick;
             UpdateLandingPadAvailability();
             if (!Util_Faction.MiningCoFaction.HostileTo(Faction.OfPlayer) &&
                 Util_Misc.Partnership.feeInSilver[Map] == 0 &&
@@ -127,7 +127,7 @@ public class Building_OrbitalRelay : Building
             }
         }
 
-        UpdateDishRotation();
+        updateDishRotation();
     }
 
     public void UpdateLandingPadAvailability()
@@ -306,24 +306,24 @@ public class Building_OrbitalRelay : Building
             return new List<FloatMenuOption> { item4 };
         }
 
-        void Action()
+        var item5 = new FloatMenuOption("MCS.callminingco".Translate(), action);
+        return new List<FloatMenuOption> { item5 };
+
+        void action()
         {
             var job = JobMaker.MakeJob(Util_JobDefOf.JobDef_UseOrbitalRelayConsole, this);
             selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
         }
-
-        var item5 = new FloatMenuOption("MCS.callminingco".Translate(), Action);
-        return new List<FloatMenuOption> { item5 };
     }
 
-    public void StartRotationSound()
+    private void startRotationSound()
     {
-        StopRotationSound();
+        stopRotationSound();
         rotationSoundSustainer =
             SoundDef.Named("GeothermalPlant_Ambience").TrySpawnSustainer(new TargetInfo(Position, Map));
     }
 
-    public void StopRotationSound()
+    private void stopRotationSound()
     {
         if (rotationSoundSustainer == null)
         {
@@ -334,7 +334,7 @@ public class Building_OrbitalRelay : Building
         rotationSoundSustainer = null;
     }
 
-    public void UpdateDishRotation()
+    private void updateDishRotation()
     {
         if (ticksToNextRotation > 0)
         {
@@ -344,20 +344,20 @@ public class Building_OrbitalRelay : Building
                 return;
             }
 
-            ticksToRotationEnd = Rand.RangeInclusive(rotationDurationMin, rotationDurationMax);
+            ticksToRotationEnd = Rand.RangeInclusive(RotationDurationMin, RotationDurationMax);
             clockwiseRotation = Rand.Value < 0.5f;
 
-            StartRotationSound();
+            startRotationSound();
         }
         else
         {
             if (clockwiseRotation)
             {
-                dishRotation += dishRotationPerTick;
+                dishRotation += DishRotationPerTick;
             }
             else
             {
-                dishRotation -= dishRotationPerTick;
+                dishRotation -= DishRotationPerTick;
             }
 
             ticksToRotationEnd--;
@@ -366,8 +366,8 @@ public class Building_OrbitalRelay : Building
                 return;
             }
 
-            ticksToNextRotation = Rand.RangeInclusive(rotationIntervalMin, rotationIntervalMax);
-            StopRotationSound();
+            ticksToNextRotation = Rand.RangeInclusive(RotationIntervalMin, RotationIntervalMax);
+            stopRotationSound();
         }
     }
 

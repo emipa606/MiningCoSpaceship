@@ -50,13 +50,13 @@ public class IncidentWorker_DispatcherPick : IncidentWorker
         var teamPawns = Expedition.GenerateExpeditionPawns(map);
         if (Rand.Value < 0.2f)
         {
-            ApplyInjuriesOrIllnessToTeam(map, teamPawns);
+            applyInjuriesOrIllnessToTeam(map, teamPawns);
         }
 
         return SpawnTeamOnMapEdge(bestAvailableLandingPadReachingMapEdge.Position, map, teamPawns);
     }
 
-    public void ApplyInjuriesOrIllnessToTeam(Map map, List<Pawn> teamPawns)
+    private static void applyInjuriesOrIllnessToTeam(Map map, List<Pawn> teamPawns)
     {
         if (map.Biome == Util_BiomeDefOf.TropicalRainforest || map.Biome == BiomeDef.Named("TropicalSwamp"))
         {
@@ -79,7 +79,7 @@ public class IncidentWorker_DispatcherPick : IncidentWorker
         }
     }
 
-    public bool SpawnTeamOnMapEdge(IntVec3 targetDestination, Map map, List<Pawn> teamPawns)
+    private bool SpawnTeamOnMapEdge(IntVec3 targetDestination, Map map, List<Pawn> teamPawns)
     {
         if (!Expedition.TryFindRandomExitSpot(map, targetDestination, out var exitSpot))
         {

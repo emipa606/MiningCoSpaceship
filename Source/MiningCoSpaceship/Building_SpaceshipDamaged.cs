@@ -9,18 +9,18 @@ namespace Spaceship;
 
 public class Building_SpaceshipDamaged : Building_Spaceship
 {
-    public const int availableMaterialsUpdatePeriodInTicks = 62;
+    private const int AvailableMaterialsUpdatePeriodInTicks = 62;
 
-    public Dictionary<ThingDef, int> availableMaterials = new Dictionary<ThingDef, int>();
+    private Dictionary<ThingDef, int> availableMaterials = new();
 
-    public int initialHitPoints;
+    private int initialHitPoints;
 
-    public Dictionary<ThingDef, int> neededMaterials = new Dictionary<ThingDef, int>();
+    private Dictionary<ThingDef, int> neededMaterials = new();
 
-    public int nextAvailableMaterialsUpdateTick;
-    public bool repairsAreStarted;
+    private int nextAvailableMaterialsUpdateTick;
+    private bool repairsAreStarted;
 
-    public override bool takeOffRequestIsEnabled => true;
+    protected override bool takeOffRequestIsEnabled => true;
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
@@ -49,7 +49,7 @@ public class Building_SpaceshipDamaged : Building_Spaceship
     {
         if (mode != DestroyMode.KillFinalize)
         {
-            DetermineConsequences();
+            determineConsequences();
         }
 
         base.Destroy(mode);
@@ -63,7 +63,7 @@ public class Building_SpaceshipDamaged : Building_Spaceship
         Scribe_Collections.Look(ref neededMaterials, "neededMaterials");
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         if (this.DestroyedOrNull())
@@ -73,8 +73,8 @@ public class Building_SpaceshipDamaged : Building_Spaceship
 
         if (!repairsAreStarted && Find.TickManager.TicksGame >= nextAvailableMaterialsUpdateTick)
         {
-            nextAvailableMaterialsUpdateTick = Find.TickManager.TicksGame + availableMaterialsUpdatePeriodInTicks;
-            UpdateAvailableMaterials();
+            nextAvailableMaterialsUpdateTick = Find.TickManager.TicksGame + AvailableMaterialsUpdatePeriodInTicks;
+            updateAvailableMaterials();
         }
 
         if (HitPoints >= MaxHitPoints)
@@ -83,7 +83,7 @@ public class Building_SpaceshipDamaged : Building_Spaceship
         }
     }
 
-    public void UpdateAvailableMaterials()
+    private void updateAvailableMaterials()
     {
         var dictionary = new Dictionary<ThingDef, int>();
         foreach (var key in neededMaterials.Keys)
@@ -91,7 +91,7 @@ public class Building_SpaceshipDamaged : Building_Spaceship
             dictionary.Add(key, 0);
         }
 
-        foreach (var item in GetNeededMaterialsAround())
+        foreach (var item in getNeededMaterialsAround())
         {
             dictionary[item.def] += item.stackCount;
         }
@@ -99,7 +99,7 @@ public class Building_SpaceshipDamaged : Building_Spaceship
         availableMaterials = dictionary;
     }
 
-    public List<Thing> GetNeededMaterialsAround()
+    private List<Thing> getNeededMaterialsAround()
     {
         var list = new List<Thing>();
         foreach (var item in GenRadial.RadialCellsAround(Position, def.specialDisplayRadius, true))
@@ -116,7 +116,7 @@ public class Building_SpaceshipDamaged : Building_Spaceship
         return list;
     }
 
-    public bool AreNeededMaterialsAvailable()
+    private bool areNeededMaterialsAvailable()
     {
         foreach (var key in neededMaterials.Keys)
         {
@@ -129,10 +129,10 @@ public class Building_SpaceshipDamaged : Building_Spaceship
         return true;
     }
 
-    public void TryStartRepairs()
+    private void tryStartRepairs()
     {
-        UpdateAvailableMaterials();
-        if (!AreNeededMaterialsAvailable())
+        updateAvailableMaterials();
+        if (!areNeededMaterialsAvailable())
         {
             Messages.Message("MCS.nomaterials".Translate(),
                 this, MessageTypeDefOf.RejectInput);
@@ -143,7 +143,7 @@ public class Building_SpaceshipDamaged : Building_Spaceship
         var dictionary = new Dictionary<ThingDef, int>(neededMaterials);
         foreach (var key in neededMaterials.Keys)
         {
-            foreach (var item in GetNeededMaterialsAround())
+            foreach (var item in getNeededMaterialsAround())
             {
                 if (item.def != key)
                 {
@@ -172,7 +172,7 @@ public class Building_SpaceshipDamaged : Building_Spaceship
         Messages.Message("MCS.materialsok".Translate(), this, MessageTypeDefOf.PositiveEvent);
     }
 
-    public void DetermineConsequences()
+    private void determineConsequences()
     {
         if (repairsAreStarted)
         {
@@ -226,7 +226,7 @@ public class Building_SpaceshipDamaged : Building_Spaceship
     public override IEnumerable<Gizmo> GetGizmos()
     {
         IList<Gizmo> list = new List<Gizmo>();
-        var num = 700000106;
+        const int num = 700000106;
         if (!repairsAreStarted)
         {
             var command_Action = new Command_Action
@@ -236,7 +236,7 @@ public class Building_SpaceshipDamaged : Building_Spaceship
                 defaultLabel = "MCS.startrepairs".Translate(),
                 defaultDesc = "MCS.startrepairsTT".Translate(),
                 activateSound = SoundDefOf.Click,
-                action = TryStartRepairs,
+                action = tryStartRepairs,
                 groupKey = num + 1
             };
             list.Add(command_Action);

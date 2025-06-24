@@ -6,11 +6,11 @@ namespace Spaceship;
 
 public class Trigger_HostileToColony : Trigger
 {
-    public const int checkInterval = 62;
+    private const int CheckInterval = 62;
 
     public override bool ActivateOn(Lord lord, TriggerSignal signal)
     {
-        return signal.type == TriggerSignalType.Tick && Find.TickManager.TicksGame % checkInterval == 0 &&
+        return signal.type == TriggerSignalType.Tick && Find.TickManager.TicksGame % CheckInterval == 0 &&
                lord.faction.HostileTo(Faction.OfPlayer);
     }
 }

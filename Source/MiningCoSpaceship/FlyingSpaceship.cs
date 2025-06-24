@@ -7,50 +7,50 @@ namespace Spaceship;
 [StaticConstructorOnStartup]
 public abstract class FlyingSpaceship : Thing
 {
-    public static Vector3 supplySpaceshipScale = new Vector3(11f, 1f, 20f);
+    private static readonly Vector3 supplySpaceshipScale = new(11f, 1f, 20f);
 
-    public static Vector3 medicalSpaceshipScale = new Vector3(7f, 1f, 11f);
+    private static readonly Vector3 medicalSpaceshipScale = new(7f, 1f, 11f);
 
-    public static readonly Material supplySpaceshipTexture =
+    private static readonly Material supplySpaceshipTexture =
         MaterialPool.MatFrom("Things/SupplySpaceship/SupplySpaceship");
 
-    public static readonly Material dispatcherTexture = MaterialPool.MatFrom("Things/Dispatcher/DispatcherFlying");
+    private static readonly Material dispatcherTexture = MaterialPool.MatFrom("Things/Dispatcher/DispatcherFlying");
 
-    public static readonly Material medicalSpaceshipTexture =
+    private static readonly Material medicalSpaceshipTexture =
         MaterialPool.MatFrom("Things/MedicalSpaceship/MedicalSpaceship");
 
-    public static readonly Material strikeshipTexture = MaterialPool.MatFrom("Things/StrikeShip/StrikeShip");
+    private static readonly Material strikeshipTexture = MaterialPool.MatFrom("Things/StrikeShip/StrikeShip");
 
-    public static readonly Material supplySpaceshipShadowTexture =
+    private static readonly Material supplySpaceshipShadowTexture =
         MaterialPool.MatFrom("Things/SupplySpaceship/SupplySpaceshipShadow", ShaderDatabase.Transparent);
 
-    public static readonly Material medicalSpaceshipShadowTexture =
+    private static readonly Material medicalSpaceshipShadowTexture =
         MaterialPool.MatFrom("Things/MedicalSpaceship/MedicalSpaceshipShadow", ShaderDatabase.Transparent);
 
-    public Vector3 baseSpaceshipScale = new Vector3(1f, 1f, 1f);
-    public Vector3 spaceshipExactPosition = Vector3.zero;
+    protected Vector3 baseSpaceshipScale = new(1f, 1f, 1f);
+    protected Vector3 spaceshipExactPosition = Vector3.zero;
 
-    public float spaceshipExactRotation;
+    protected float spaceshipExactRotation;
 
-    public SpaceshipKind spaceshipKind = SpaceshipKind.CargoPeriodic;
+    protected SpaceshipKind spaceshipKind = SpaceshipKind.CargoPeriodic;
 
-    public Matrix4x4 spaceshipMatrix;
+    private Matrix4x4 spaceshipMatrix;
 
-    public Vector3 spaceshipScale = new Vector3(11f, 1f, 20f);
+    protected Vector3 spaceshipScale = new(11f, 1f, 20f);
 
-    public Vector3 spaceshipShadowExactPosition = Vector3.zero;
+    protected Vector3 spaceshipShadowExactPosition = Vector3.zero;
 
-    public Matrix4x4 spaceshipShadowMatrix;
+    private Matrix4x4 spaceshipShadowMatrix;
 
-    public Vector3 spaceshipShadowScale = new Vector3(11f, 1f, 20f);
+    protected Vector3 spaceshipShadowScale = new(11f, 1f, 20f);
 
-    public Material spaceshipShadowTexture;
+    private Material spaceshipShadowTexture;
 
-    public Material spaceshipTexture;
+    private Material spaceshipTexture;
 
     public override Vector3 DrawPos => spaceshipExactPosition;
 
-    public Vector3 ShadowDrawPos => spaceshipShadowExactPosition;
+    private Vector3 ShadowDrawPos => spaceshipShadowExactPosition;
 
     public override void SpawnSetup(Map map, bool respawningAfterLoad)
     {
@@ -105,7 +105,7 @@ public abstract class FlyingSpaceship : Thing
         Scribe_Values.Look(ref spaceshipShadowScale, "spaceshipShadowScale");
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         ComputeShipExactPosition();
         ComputeShipShadowExactPosition();
@@ -114,17 +114,17 @@ public abstract class FlyingSpaceship : Thing
         SetShipPositionToBeSelectable();
     }
 
-    public abstract void ComputeShipExactPosition();
+    protected abstract void ComputeShipExactPosition();
 
-    public abstract void ComputeShipShadowExactPosition();
+    protected abstract void ComputeShipShadowExactPosition();
 
-    public abstract void ComputeShipExactRotation();
+    protected abstract void ComputeShipExactRotation();
 
-    public abstract void ComputeShipScale();
+    protected abstract void ComputeShipScale();
 
-    public abstract void SetShipPositionToBeSelectable();
+    protected abstract void SetShipPositionToBeSelectable();
 
-    public bool IsInBounds()
+    protected bool IsInBounds()
     {
         return DrawPos.ToIntVec3().InBounds(Map) && DrawPos.ToIntVec3().x >= 10 &&
                DrawPos.ToIntVec3().x < Map.Size.x - 10 && DrawPos.ToIntVec3().z >= 10 &&

@@ -7,13 +7,13 @@ namespace Spaceship;
 
 public class JobGiver_HealColonists : ThinkNode_JobGiver
 {
-    protected int jobMaxDuration = 999999;
+    private int jobMaxDuration = 999999;
 
     public override ThinkNode DeepCopy(bool resolve = true)
     {
-        var jobGiver_HealColonists = (JobGiver_HealColonists)base.DeepCopy(resolve);
-        jobGiver_HealColonists.jobMaxDuration = jobMaxDuration;
-        return jobGiver_HealColonists;
+        var jobGiverHealColonists = (JobGiver_HealColonists)base.DeepCopy(resolve);
+        jobGiverHealColonists.jobMaxDuration = jobMaxDuration;
+        return jobGiverHealColonists;
     }
 
     protected override Job TryGiveJob(Pawn pawn)
@@ -24,7 +24,7 @@ public class JobGiver_HealColonists : ThinkNode_JobGiver
             Thing thing = null;
             if (Medicine.GetMedicineCountToFullyHeal(tendableColonist) > 0)
             {
-                thing = FindBestUnforbiddenMedicine(pawn, tendableColonist);
+                thing = findBestUnforbiddenMedicine(pawn, tendableColonist);
             }
 
             return thing != null
@@ -53,28 +53,28 @@ public class JobGiver_HealColonists : ThinkNode_JobGiver
         return null;
     }
 
-    public static Thing FindBestUnforbiddenMedicine(Pawn healer, Pawn patient)
+    private static Thing findBestUnforbiddenMedicine(Pawn healer, Pawn patient)
     {
         if (patient.playerSettings == null || (int)patient.playerSettings.medCare <= 1)
         {
             return null;
         }
 
-        bool Validator(Thing medicine)
-        {
-            return !medicine.IsForbidden(Faction.OfPlayer) &&
-                   patient.playerSettings.medCare.AllowsMedicine(medicine.def) && healer.CanReserve(medicine);
-        }
-
-        float PriorityGetter(Thing t)
-        {
-            return t.def.GetStatValueAbstract(StatDefOf.MedicalPotency);
-        }
-
         var position = patient.Position;
         var searchSet = patient.Map.listerThings.ThingsInGroup(ThingRequestGroup.PotentialBillGiver);
         var traverseParams = TraverseParms.For(healer, Danger.Some);
         return GenClosest.ClosestThing_Global_Reachable(position, patient.Map, searchSet, PathEndMode.ClosestTouch,
-            traverseParams, 100f, Validator, PriorityGetter);
+            traverseParams, 100f, validator, priorityGetter);
+
+        static float priorityGetter(Thing t)
+        {
+            return t.def.GetStatValueAbstract(StatDefOf.MedicalPotency);
+        }
+
+        bool validator(Thing medicine)
+        {
+            return !medicine.IsForbidden(Faction.OfPlayer) &&
+                   patient.playerSettings.medCare.AllowsMedicine(medicine.def) && healer.CanReserve(medicine);
+        }
     }
 }

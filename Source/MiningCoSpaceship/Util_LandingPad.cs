@@ -60,7 +60,7 @@ public static class Util_LandingPad
         var list = new List<Building_LandingPad>();
         foreach (var item in map.listerBuildings.AllBuildingsColonistOfDef(Util_ThingDefOf.LandingPad))
         {
-            if (item is Building_LandingPad { isFreeAndPowered: true } building_LandingPad)
+            if (item is Building_LandingPad { IsFreeAndPowered: true } building_LandingPad)
             {
                 list.Add(building_LandingPad);
             }
@@ -79,7 +79,7 @@ public static class Util_LandingPad
         var list = new List<Building_LandingPad>();
         foreach (var item in map.listerBuildings.AllBuildingsColonistOfDef(Util_ThingDefOf.LandingPad))
         {
-            if (item is Building_LandingPad { isFree: true } building_LandingPad)
+            if (item is Building_LandingPad { IsFree: true } building_LandingPad)
             {
                 list.Add(building_LandingPad);
             }

@@ -6,14 +6,14 @@ namespace Spaceship;
 
 public class Controller : Mod
 {
-    public static Settings settings;
-    public static string currentVersion;
+    public static Settings Settings;
+    public static string CurrentVersion;
 
     public Controller(ModContentPack content)
         : base(content)
     {
         GetSettings<Settings>();
-        currentVersion = VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
+        CurrentVersion = VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
     }
 
     public override string SettingsCategory()

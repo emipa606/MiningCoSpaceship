@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: autocannon assault -->
+  <AutocannonRaid.label>autocannon assault</AutocannonRaid.label>
+  <!-- EN: The powerful frontal autocannon can deal high damages to armored units and buildings. It does not cover a wide area though. -->
+  <AutocannonRaid.description>The powerful frontal autocannon can deal high damages to armored units and buildings. It does not cover a wide area though.</AutocannonRaid.description>
+  <!-- EN: gatling strafe run -->
+  <GatlingRaid.label>gatling strafe run</GatlingRaid.label>
+  <!-- EN: Strike ship fills the air with bullets with its twin gatling guns. Covers a large area. Particularly effective against unarmored units. -->
+  <GatlingRaid.description>Strike ship fills the air with bullets with its twin gatling guns. Covers a large area. Particularly effective against unarmored units.</GatlingRaid.description>
+  <!-- EN: incendiary bombing run -->
+  <IncendiaryRaid.label>incendiary bombing run</IncendiaryRaid.label>
+  <!-- EN: Strike ship perform a carpet bombing on the targeted area with massive incendiary bombs. Particularly effective against stationnary installations. -->
+  <IncendiaryRaid.description>Strike ship perform a carpet bombing on the targeted area with massive incendiary bombs. Particularly effective against stationnary installations.</IncendiaryRaid.description>
+  <!-- EN: gatling and rockets strafe run -->
+  <RocketRaid.label>gatling and rockets strafe run</RocketRaid.label>
+  <!-- EN: Strike ship attacks with both gatling guns and rockets. A truly devastative assault. -->
+  <RocketRaid.description>Strike ship attacks with both gatling guns and rockets. A truly devastative assault.</RocketRaid.description>
+</LanguageData>

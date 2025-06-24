@@ -6,16 +6,16 @@ namespace Spaceship;
 
 public class JobGiver_BoardSpaceship : ThinkNode_JobGiver
 {
-    protected LocomotionUrgency defaultLocomotion;
+    private LocomotionUrgency defaultLocomotion;
 
-    protected int jobMaxDuration = 999999;
+    private int jobMaxDuration = 999999;
 
     public override ThinkNode DeepCopy(bool resolve = true)
     {
-        var jobGiver_BoardSpaceship = (JobGiver_BoardSpaceship)base.DeepCopy(resolve);
-        jobGiver_BoardSpaceship.defaultLocomotion = defaultLocomotion;
-        jobGiver_BoardSpaceship.jobMaxDuration = jobMaxDuration;
-        return jobGiver_BoardSpaceship;
+        var jobGiverBoardSpaceship = (JobGiver_BoardSpaceship)base.DeepCopy(resolve);
+        jobGiverBoardSpaceship.defaultLocomotion = defaultLocomotion;
+        jobGiverBoardSpaceship.jobMaxDuration = jobMaxDuration;
+        return jobGiverBoardSpaceship;
     }
 
     protected override Job TryGiveJob(Pawn pawn)
@@ -28,7 +28,7 @@ public class JobGiver_BoardSpaceship : ThinkNode_JobGiver
             return job;
         }
 
-        Building_Spaceship building_Spaceship = null;
+        Building_Spaceship buildingSpaceship = null;
         foreach (var thing in pawn.Position.GetThingList(pawn.Map))
         {
             if (thing is not Building_Spaceship spaceship)
@@ -36,12 +36,12 @@ public class JobGiver_BoardSpaceship : ThinkNode_JobGiver
                 continue;
             }
 
-            building_Spaceship = spaceship;
+            buildingSpaceship = spaceship;
             break;
         }
 
-        return building_Spaceship != null
-            ? JobMaker.MakeJob(Util_JobDefOf.JobDef_BoardSpaceship, building_Spaceship)
+        return buildingSpaceship != null
+            ? JobMaker.MakeJob(Util_JobDefOf.JobDef_BoardSpaceship, buildingSpaceship)
             : null;
     }
 }

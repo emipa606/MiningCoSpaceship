@@ -38,13 +38,13 @@ public class IncidentWorker_DamagedSpaceship : IncidentWorker
             return false;
         }
 
-        var building_LandingPad = allFreeLandingPads.RandomElement();
-        var flyingSpaceshipLanding = Util_Spaceship.SpawnLandingSpaceship(building_LandingPad, SpaceshipKind.Damaged);
+        var buildingLandingPad = allFreeLandingPads.RandomElement();
+        var flyingSpaceshipLanding = Util_Spaceship.SpawnLandingSpaceship(buildingLandingPad, SpaceshipKind.Damaged);
         flyingSpaceshipLanding.HitPoints =
             Mathf.RoundToInt(Rand.Range(0.15f, 0.45f) * flyingSpaceshipLanding.HitPoints);
         var text = "MCS.repairsequest".Translate();
         Find.LetterStack.ReceiveLetter("MCS.repairsequesttitle".Translate(), text, LetterDefOf.NeutralEvent,
-            new TargetInfo(building_LandingPad.Position, building_LandingPad.Map));
+            new TargetInfo(buildingLandingPad.Position, buildingLandingPad.Map));
         return true;
     }
 }

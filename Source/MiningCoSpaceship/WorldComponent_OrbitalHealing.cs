@@ -11,23 +11,23 @@ namespace Spaceship;
 
 public class WorldComponent_OrbitalHealing(World world) : WorldComponent(world)
 {
-    private List<int> healEndTicks = new List<int>();
+    private List<int> healEndTicks = [];
 
-    public List<HealingPawn> healingPawns = new List<HealingPawn>();
+    public List<HealingPawn> healingPawns = [];
 
-    public int nextHealUpdateTick;
+    private int nextHealUpdateTick;
 
-    private List<Map> originMaps = new List<Map>();
+    private List<Map> originMaps = [];
 
-    private List<Pawn> pawns = new List<Pawn>();
+    private List<Pawn> pawns = [];
 
     public override void ExposeData()
     {
         base.ExposeData();
-        ExposeHealingPawns();
+        exposeHealingPawns();
     }
 
-    public void ExposeHealingPawns()
+    private void exposeHealingPawns()
     {
         if (Scribe.mode == LoadSaveMode.Saving)
         {
@@ -78,7 +78,7 @@ public class WorldComponent_OrbitalHealing(World world) : WorldComponent(world)
             var pawnBackToSurface = false;
             if (Find.TickManager.TicksGame >= healingPawn.healEndTick)
             {
-                pawnBackToSurface = TrySendPawnBackToSurface(healingPawn);
+                pawnBackToSurface = trySendPawnBackToSurface(healingPawn);
             }
 
             if (!pawnBackToSurface)
@@ -120,11 +120,11 @@ public class WorldComponent_OrbitalHealing(World world) : WorldComponent(world)
         Find.LetterStack.ReceiveLetter("MCS.keeppawntitle".Translate(), text, LetterDefOf.NeutralEvent);
     }
 
-    public bool HasAnyTreatableHediff(Pawn pawn)
+    public static bool HasAnyTreatableHediff(Pawn pawn)
     {
         foreach (var hediff in pawn.health.hediffSet.hediffs)
         {
-            if (IsTreatableHediff(hediff))
+            if (isTreatableHediff(hediff))
             {
                 return true;
             }
@@ -133,7 +133,7 @@ public class WorldComponent_OrbitalHealing(World world) : WorldComponent(world)
         return false;
     }
 
-    public bool IsTreatableHediff(Hediff hediff)
+    private static bool isTreatableHediff(Hediff hediff)
     {
         return hediff.Visible && !hediff.IsPermanent() && (hediff.def.tendable || hediff.def.makesSickThought ||
                                                            hediff.def == HediffDefOf.Hypothermia ||
@@ -145,20 +145,20 @@ public class WorldComponent_OrbitalHealing(World world) : WorldComponent(world)
 
     public void Notify_PawnStartingOrbitalHealing(Pawn pawn, Map originMap)
     {
-        var num = HealTreatableHediffs(pawn);
+        var num = healTreatableHediffs(pawn);
         var val = num * 15000;
         val = Math.Min(val, 300000);
         var item = new HealingPawn(pawn, originMap, Find.TickManager.TicksGame + val);
         healingPawns.Add(item);
     }
 
-    public int HealTreatableHediffs(Pawn pawn)
+    private static int healTreatableHediffs(Pawn pawn)
     {
         var num = 0;
         var list = new List<Hediff>();
         foreach (var hediff in pawn.health.hediffSet.hediffs)
         {
-            if (!IsTreatableHediff(hediff))
+            if (!isTreatableHediff(hediff))
             {
                 continue;
             }
@@ -179,17 +179,17 @@ public class WorldComponent_OrbitalHealing(World world) : WorldComponent(world)
         return num;
     }
 
-    public bool TrySendPawnBackToSurface(HealingPawn healedPawn)
+    private static bool trySendPawnBackToSurface(HealingPawn healedPawn)
     {
         var originMap = healedPawn.originMap;
-        if (Find.Maps.Contains(originMap) && originMap.IsPlayerHome && SendPawnBackToMap(healedPawn.pawn, originMap))
+        if (Find.Maps.Contains(originMap) && originMap.IsPlayerHome && sendPawnBackToMap(healedPawn.pawn, originMap))
         {
             return true;
         }
 
         foreach (var item in Find.Maps.InRandomOrder())
         {
-            if (item.IsPlayerHome && SendPawnBackToMap(healedPawn.pawn, item))
+            if (item.IsPlayerHome && sendPawnBackToMap(healedPawn.pawn, item))
             {
                 return true;
             }
@@ -198,7 +198,7 @@ public class WorldComponent_OrbitalHealing(World world) : WorldComponent(world)
         return false;
     }
 
-    public bool SendPawnBackToMap(Pawn pawn, Map map)
+    private static bool sendPawnBackToMap(Pawn pawn, Map map)
     {
         var orbitalRelay = Util_OrbitalRelay.GetOrbitalRelay(map);
         if (orbitalRelay == null)
@@ -227,7 +227,7 @@ public class WorldComponent_OrbitalHealing(World world) : WorldComponent(world)
         var objective = pawn.gender.GetObjective();
         pawn.needs.SetInitialLevels();
         pawn.needs.roomsize.CurLevel = 0f;
-        var activeDropPodInfo = new ActiveDropPodInfo();
+        var activeDropPodInfo = new ActiveTransporterInfo();
         if (Rand.Value < 0.98f)
         {
             var text = "MCS.healingdone".Translate(pawn.Name.ToStringShort, possessive);

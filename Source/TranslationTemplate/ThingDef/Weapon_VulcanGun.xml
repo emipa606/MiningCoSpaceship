@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: charge shot -->
+  <Bullet_VulcanTurret.label>charge shot</Bullet_VulcanTurret.label>
+  <!-- EN: vulcan turret gun -->
+  <Gun_VulcanTurret.label>vulcan turret gun</Gun_VulcanTurret.label>
+  <!-- EN: An advanced charged gun mounted on a spaceship. -->
+  <Gun_VulcanTurret.description>An advanced charged gun mounted on a spaceship.</Gun_VulcanTurret.description>
+  <!-- EN: vulcan turret gun -->
+  <Gun_VulcanTurret.verbs.Verb_Shoot.label>vulcan turret gun</Gun_VulcanTurret.verbs.Verb_Shoot.label>
+</LanguageData>

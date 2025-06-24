@@ -12,21 +12,21 @@ namespace Spaceship;
 
 public class Building_SpaceshipMedical : Building_SpaceshipCargo
 {
-    public const int medicsNumber = 4;
+    private const int MedicsNumber = 4;
 
-    public const int tendableColonistCheckPeriodInTicks = 240;
+    private const int TendableColonistCheckPeriodInTicks = 240;
 
-    public const int staffAboardHealPeriodInTicks = 2500;
+    private const int StaffAboardHealPeriodInTicks = 2500;
 
-    public const int orbitalHealingPawnsAboardMaxCount = 6;
+    private const int OrbitalHealingPawnsAboardMaxCount = 6;
 
-    public int availableMedikitsCount = 40;
+    private int availableMedikitsCount = 40;
 
-    private List<Pawn> medics = new List<Pawn>();
+    private List<Pawn> medics = [];
 
-    public int nextStaffAboardHealTick;
+    private int nextStaffAboardHealTick;
 
-    public int nextTendableColonistCheckTick;
+    private int nextTendableColonistCheckTick;
 
     public int orbitalHealingPawnsAboardCount;
 
@@ -43,7 +43,7 @@ public class Building_SpaceshipMedical : Building_SpaceshipCargo
             return;
         }
 
-        for (var i = 0; i < medicsNumber; i++)
+        for (var i = 0; i < MedicsNumber; i++)
         {
             var item = MiningCoPawnGenerator.GeneratePawn(Util_PawnKindDefOf.Medic, Map);
             medics.Add(item);
@@ -67,7 +67,7 @@ public class Building_SpaceshipMedical : Building_SpaceshipCargo
 
             if (Util_Faction.MiningCoFaction.HostileTo(Faction.OfPlayer))
             {
-                EjectPlayerPawns();
+                ejectPlayerPawns();
             }
 
             var list = new List<Pawn>();
@@ -98,21 +98,21 @@ public class Building_SpaceshipMedical : Building_SpaceshipCargo
         Scribe_Values.Look(ref orbitalHealingPawnsAboardCount, "orbitalHealingPawnsAboardCount");
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
-        HealStaffAboard();
-        SendMedicIfNeeded();
+        healStaffAboard();
+        sendMedicIfNeeded();
     }
 
-    public void HealStaffAboard()
+    private void healStaffAboard()
     {
         if (Find.TickManager.TicksGame < nextStaffAboardHealTick)
         {
             return;
         }
 
-        nextStaffAboardHealTick = Find.TickManager.TicksGame + staffAboardHealPeriodInTicks;
+        nextStaffAboardHealTick = Find.TickManager.TicksGame + StaffAboardHealPeriodInTicks;
         foreach (var item in pawnsAboard)
         {
             if (item.Faction != Util_Faction.MiningCoFaction || !item.health.HasHediffsNeedingTend())
@@ -125,14 +125,14 @@ public class Building_SpaceshipMedical : Building_SpaceshipCargo
         }
     }
 
-    public void SendMedicIfNeeded()
+    private void sendMedicIfNeeded()
     {
         if (Find.TickManager.TicksGame < nextTendableColonistCheckTick)
         {
             return;
         }
 
-        nextTendableColonistCheckTick = Find.TickManager.TicksGame + tendableColonistCheckPeriodInTicks;
+        nextTendableColonistCheckTick = Find.TickManager.TicksGame + TendableColonistCheckPeriodInTicks;
         if (IsTakeOffImminent(30000))
         {
             return;
@@ -224,7 +224,7 @@ public class Building_SpaceshipMedical : Building_SpaceshipCargo
         var list = new List<FloatMenuOption>();
         if (!selPawn.CanReach(this, PathEndMode.ClosestTouch, Danger.Some))
         {
-            return GetFloatMenuOptionsCannotReach(selPawn);
+            return GetFloatMenuOptionsCannotReach();
         }
 
         foreach (var floatMenuOption2 in base.GetFloatMenuOptions(selPawn))
@@ -239,13 +239,13 @@ public class Building_SpaceshipMedical : Building_SpaceshipCargo
         }
         else
         {
-            if (!Util_Misc.OrbitalHealing.HasAnyTreatableHediff(selPawn))
+            if (!WorldComponent_OrbitalHealing.HasAnyTreatableHediff(selPawn))
             {
                 return list;
             }
 
             FloatMenuOption floatMenuOption;
-            if (orbitalHealingPawnsAboardCount >= orbitalHealingPawnsAboardMaxCount)
+            if (orbitalHealingPawnsAboardCount >= OrbitalHealingPawnsAboardMaxCount)
             {
                 var label = "MCS.boardmedicnoroom".Translate();
                 floatMenuOption = new FloatMenuOption(label, null);
@@ -283,7 +283,7 @@ public class Building_SpaceshipMedical : Building_SpaceshipCargo
             defaultLabel = "MCS.disembark".Translate(),
             defaultDesc = "MCS.disembarkTT".Translate(),
             activateSound = SoundDefOf.Click,
-            action = EjectPlayerPawns,
+            action = ejectPlayerPawns,
             groupKey = num + 1
         };
         list.Add(command_Action);
@@ -291,7 +291,7 @@ public class Building_SpaceshipMedical : Building_SpaceshipCargo
         return gizmos != null ? gizmos.Concat(list) : list;
     }
 
-    public void EjectPlayerPawns()
+    private void ejectPlayerPawns()
     {
         var list = new List<Pawn>();
         foreach (var item in pawnsAboard)
