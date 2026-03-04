@@ -1,6 +1,6 @@
 # [MiningCo. Spaceship (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2912642991)
 
-![Image](https://i.imgur.com/buuPQel.png)
+![Image](https://img.litet.net/logos/Info.png)
 
 Update of Rikikis mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1221668621
@@ -8,9 +8,9 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1221668621
 - Opened all strings for translation
 - If [Vanilla Expanded Framework](https://steamcommunity.com/workshop/filedetails/?id=2023507013) is active this mod can be added to an existing save. Just choose to add the faction at first startup after activating the mod.
 
-![Image](https://i.imgur.com/pufA0kM.png)
+![Image](https://img.litet.net/logos/Notice.png)
 	
-![Image](https://i.imgur.com/Z4GOv8H.png)
+![Image](https://img.litet.net/logos/OriginalDescription.png)
 
 This mod adds MiningCo. spaceships. See the forum thread for content/changelog. https://ludeon.com/forums/index.php?topic=14711.msg153947#msg153947
 
@@ -61,13 +61,13 @@ Possible incompatibility
 * Minify everything can lead to strange behavior when moving a landing pad (just deconstruct it!)
 * Automatic rebuild mod.
 	
-![Image](https://i.imgur.com/PwoNOj4.png)
+![Image](https://img.litet.net/logos/ReportingIssues.png)
 
 
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
+-  Always post your log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404)
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
@@ -75,4 +75,4 @@ Possible incompatibility
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/MiningCoSpaceship?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2912642991) | tags:  air strike,  trading
+[![Image](https://img.shields.io/github/v/release/emipa606/MiningCoSpaceship?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2912642991) | tags: trading, air strike

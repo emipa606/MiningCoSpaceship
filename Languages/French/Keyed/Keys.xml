@@ -28,10 +28,10 @@
   <MCS.landingpadpayment>Un vaisseau répartiteur vous a payé {0} argent pour utiliser votre piste d'atterrissage.</MCS.landingpadpayment>
   <MCS.repairprogress>Progression de la réparation : {0}</MCS.repairprogress>
   <MCS.boardmedicnoroom>Embarquer dans un vaisseau médical (pas d'emplacement libre)</MCS.boardmedicnoroom>
-  <MCS.boardmedic>Embarquer dans un vaisseau médical (0 argent)</MCS.boardmedic>
+  <MCS.boardmedic>Embarquer dans un vaisseau médical ({0} argent)</MCS.boardmedic>
   <MCS.boardmedicnosilver>Embarquer dans un vaisseau médical ({0} argent) (pas assez d'argent)</MCS.boardmedicnosilver>
-  <MCS.cannotboardmedic>{Impossible de monter à bord du vaisseau médical de MiningCo... Il n'y a plus d'emplacement libre.</MCS.cannotboardmedic>
-  <MCS.cannotboardmedicsilver>{Impossible de monter à bord du vaisseau médical de MiningCo... Vous n'avez pas assez d'argent pour payer {1} la guérison orbitale.</MCS.cannotboardmedicsilver>
+  <MCS.cannotboardmedic>{0} impossible de monter à bord du vaisseau médical de MiningCo... Il n'y a plus d'emplacement libre.</MCS.cannotboardmedic>
+  <MCS.cannotboardmedicsilver>{0} impossible de monter à bord du vaisseau médical de MiningCo... Vous n'avez pas assez d'argent pour payer {1} la guérison orbitale.</MCS.cannotboardmedicsilver>
   <MCS.pawnsaboardmedic>Des pions à bord :</MCS.pawnsaboardmedic>
   <MCS.pawnsaboardmedicnone>Pions à bord : aucun</MCS.pawnsaboardmedicnone>
   <MCS.materialsnearby>Matériaux de réparation stockés à proximité :</MCS.materialsnearby>
